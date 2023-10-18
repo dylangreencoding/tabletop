@@ -1,0 +1,28 @@
+
+export function getMatrix (mapData: any) {
+
+  // // generate matrix
+  const mapMatrix: Array<Array<any>> = [];
+  // // across x-axis, array of arrays
+  for (let i = 0; i <= mapData.width; i++) {
+    // // down y-axis, sparse arrays
+    mapMatrix.push(new Array(mapData.height + 1));
+  }
+
+  // // add entities
+  for (const key of Object.keys(mapData.entities)) {
+    mapMatrix[mapData.entities[key].x][mapData.entities[key].y] = 1;
+  }
+
+  // // fill every location
+  // // for testing purposes
+  // for (let i = 0; i < mapMatrix.length; i++) {
+  //   for (let j = 0; j < mapMatrix[i].length; j++) {
+  //     mapMatrix[i][j] = 1;
+  //   }
+  // }
+
+  console.log('matrix generated', mapMatrix)
+  return mapMatrix
+  
+}
