@@ -19,8 +19,8 @@ body {
 }
 
 .dashboard {
-  /* TEST -- for mobile, to permit pointer events to function */
-  touch-action: none;
+  /* TEST -- for mobile, to permit pointer events to function
+  touch-action: none; */
 
   height: 100%;
   width: 100%;
@@ -31,6 +31,12 @@ body {
   background-color: hsl(0, 0%, 10%);
 }
 
+.canvas {
+  /* TEST -- for mobile, to permit pointer events to function */
+  touch-action: none;
+}
+
+/* Overlays the canvas */
 .panel-grid {
   height: 100%;
   width: 100%;
@@ -46,11 +52,12 @@ body {
   display: grid;
 }
 
-
+/* Dynamically applied to panel-grid element to expand panel */
 .panel-out {
   grid-template-columns: 3fr 1fr 6rem;
 }
 
+/* Dynamically applied to panel-grid element to collapse panel */
 .panel-in {
   grid-template-columns: 1fr 6rem;
 }

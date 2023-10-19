@@ -12,7 +12,7 @@ export default function Tabs(props: Props) {
   return (
     <div className="tabs">
       <button type="button" onClick={handlePanelOut}>
-        X
+        Hide/Show Panel
       </button>
     </div>
   );

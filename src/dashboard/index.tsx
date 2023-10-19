@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import Canvas from "./canvas";
-import Panel from "./panel";
+import PanelGrid from "./panel-grid";
 
 import { mapDataTemp } from "./data-objects/map-data";
 
@@ -36,7 +36,11 @@ export function Dashboard(props: DashboardProps) {
         mapData={mapData}
         setMapData={setMapData}
       />
-      <Panel mapData={mapData} panelOut={panelOut} setPanelOut={setPanelOut} />
+      <PanelGrid
+        mapData={mapData}
+        panelOut={panelOut}
+        setPanelOut={setPanelOut}
+      />
     </div>
   );
 }

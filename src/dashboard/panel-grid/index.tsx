@@ -1,5 +1,5 @@
 import { getSelected } from "../utility-functions/get-selected";
-import Tabs from "../tabs";
+import Tabs from "./tabs";
 
 interface Props {
   mapData: any;
@@ -8,7 +8,7 @@ interface Props {
   setPanelOut: Function;
 }
 
-export default function Panel(props: Props) {
+export default function PanelGrid(props: Props) {
   const selected = getSelected(
     props.mapData.selected.x,
     props.mapData.selected.y,
