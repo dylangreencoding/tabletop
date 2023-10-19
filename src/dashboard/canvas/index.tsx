@@ -8,6 +8,12 @@ import {
   getMousePosition,
 } from "../utility-functions/get-mouse-data";
 
+import { touch } from "../data-objects/touch-data";
+import {
+  getTouch,
+  getTouchPosition,
+} from "../utility-functions/get-touch-data";
+
 import { getHashX, getHashY } from "../utility-functions/get-hash-maps";
 import { getMatrix } from "../utility-functions/get-matrix";
 
@@ -54,11 +60,11 @@ export default function Canvas(props: Props) {
 
     /// // ************* \\ \\\
     // // EVENT HANDLERS \\ \\
-    const handlePointerDown = (_e: PointerEvent) => {
+    const handleMouseDown = (_e: MouseEvent) => {
       mouse.isPressed = true;
     };
 
-    const handlePointerMove = (e: PointerEvent) => {
+    const handleMouseMove = (e: MouseEvent) => {
       // // get mouse data
       mouse.movement = getMouseMovement(e);
       mouse.position = getMousePosition(e, hashX, hashY);
@@ -74,7 +80,7 @@ export default function Canvas(props: Props) {
       draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
     };
 
-    const handlePointerUp = (_e: PointerEvent) => {
+    const handleMouseUp = (_e: MouseEvent) => {
       mouse.isPressed = false;
 
       if (
@@ -159,21 +165,78 @@ export default function Canvas(props: Props) {
       draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
     };
 
-    canvas.addEventListener("pointerdown", handlePointerDown);
-    canvas.addEventListener("pointermove", handlePointerMove);
-    canvas.addEventListener("pointerup", handlePointerUp);
+    const handleTouchStart = (e: TouchEvent) => {
+      console.log("touchstart", e);
+
+      // // prevent mouse event from firing
+      e.preventDefault();
+
+      touch.thisTouch = getTouch(e);
+      touch.position = getTouchPosition(e, hashX, hashY);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      console.log("touchmove", e);
+      e.preventDefault();
+
+      // // move map
+      touch.lastTouch.x = touch.thisTouch.x;
+      touch.lastTouch.y = touch.thisTouch.y;
+      touch.thisTouch = getTouch(e);
+      props.mapData.x += touch.thisTouch.x - touch.lastTouch.x;
+      props.mapData.y += touch.thisTouch.y - touch.lastTouch.y;
+      touch.didMoveMap = true;
+      keepMapInView(props.mapData, canvas);
+      draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      console.log("touchend", e);
+      e.preventDefault();
+
+      if (
+        !touch.didMoveMap &&
+        touch.position.x !== undefined &&
+        touch.position.y !== undefined
+      ) {
+        // // select if map was not moved
+        selectLocation(props.mapData, touch, matrix);
+      }
+
+      touch.didMoveMap = false;
+      // // set state properly after mutation
+      // // this reruns useEffect which redraws map and re-initializes hashmaps
+      props.setMapData({ ...props.mapData, mapData });
+    };
+
+    const handleTouchCancel = (e: TouchEvent) => {
+      console.log("touchcancel", e);
+      e.preventDefault();
+    };
+
+    canvas.addEventListener("mousedown", handleMouseDown);
+    canvas.addEventListener("mousemove", handleMouseMove);
+    canvas.addEventListener("mouseup", handleMouseUp);
     canvas.addEventListener("wheel", handleWheel);
     document.addEventListener("keyup", handleKeyUp);
     document.addEventListener("keydown", handleKeyDown);
     window.addEventListener("resize", handleResize);
+    canvas.addEventListener("touchstart", handleTouchStart);
+    canvas.addEventListener("touchmove", handleTouchMove);
+    canvas.addEventListener("touchend", handleTouchEnd);
+    canvas.addEventListener("touchcancel", handleTouchCancel);
     return () => {
-      canvas.removeEventListener("pointerdown", handlePointerDown);
-      canvas.removeEventListener("pointermove", handlePointerMove);
-      canvas.removeEventListener("pointerup", handlePointerUp);
+      canvas.removeEventListener("mousedown", handleMouseDown);
+      canvas.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("mouseup", handleMouseUp);
       canvas.removeEventListener("wheel", handleWheel);
       document.removeEventListener("keyup", handleKeyUp);
       document.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("resize", handleResize);
+      canvas.removeEventListener("touchstart", handleTouchStart);
+      canvas.removeEventListener("touchmove", handleTouchMove);
+      canvas.removeEventListener("touchend", handleTouchEnd);
+      canvas.removeEventListener("touchcancel", handleTouchCancel);
     };
   }, [props.mapData]);
 

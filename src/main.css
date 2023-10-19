@@ -22,50 +22,44 @@ body {
   /* TEST -- for mobile, to permit pointer events to function */
   touch-action: none;
 
-  /* TEST -- for mobile */
-  position: fixed;
-
   height: 100%;
   width: 100%;
+
+  position: relative;
 
   color: hsl(0, 0%, 90%);
   background-color: hsl(0, 0%, 10%);
 }
 
-
-.panel-out {
+.panel-grid {
   height: 100%;
   width: 100%;
-  position: fixed;
+
+  position: absolute;
   top: 0;
   left: 0;
-  overflow: hidden;
+  
   z-index: 9;
+  /* overflow: hidden; */
   pointer-events: none;
 
   display: grid;
-  grid-template-columns: 15fr 4fr 1fr;
+}
+
+
+.panel-out {
+  grid-template-columns: 3fr 1fr 6rem;
 }
 
 .panel-in {
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  z-index: 9;
-  pointer-events: none;
-
-  display: grid;
-  grid-template-columns: 19fr 1fr;
+  grid-template-columns: 1fr 6rem;
 }
 
 .panel {
   position: relative;
   pointer-events: all;
+  color: hsl(0, 0%, 90%);
   background-color: hsl(0, 0%, 10%);
-  color: hsl(0, 0%, 100%);
   border-left: dotted 1px hsl(0, 0%, 50%);
 }
 
@@ -76,8 +70,29 @@ body {
 .tabs {
   position: relative;
   pointer-events: all;
+  color: hsl(0, 0%, 90%);
   background-color: hsl(0, 0%, 10%);
-  color: hsl(0, 0%, 100%);
   border-left: dotted 1px hsl(0, 0%, 50%);
 }
 
+@media screen and (orientation: portrait) {
+  .panel-out {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 3fr 6rem;
+  }
+
+  .panel-in {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 6rem;
+  }
+
+  .panel {
+    border-left: none;
+    border-top: dotted 1px hsl(0, 0%, 50%);
+  }
+
+  .tabs {
+    border-left: none;
+    border-top: dotted 1px hsl(0, 0%, 50%);
+  }
+}

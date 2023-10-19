@@ -15,8 +15,8 @@ export default function Panel(props: Props) {
     props.mapData
   );
   return (
-    <div className={`${props.panelOut ? "panel-out" : "panel-in"}`}>
-      <div />
+    <div className={`panel-grid ${props.panelOut ? "panel-out" : "panel-in"}`}>
+      <div className="canvas-window" />
       <div className={`${props.panelOut ? "panel" : "panel-hidden"}`}>
         {selected.x}, {selected.y} {selected.name}
       </div>
