@@ -8,6 +8,29 @@ function HomePage() {
         <p>
           <Link to={"./dashboard"}>Go to dashboard &rarr;</Link>
         </p>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
+        <h1>la</h1>
       </main>
     </div>
   );

@@ -16,7 +16,6 @@ export default function PanelGrid(props: Props) {
   );
   return (
     <div className={`panel-grid ${props.panelOut ? "panel-out" : "panel-in"}`}>
-      <div className="canvas-window" />
       <div className={`${props.panelOut ? "panel" : "panel-hidden"}`}>
         {selected.x}, {selected.y} {selected.name}
       </div>

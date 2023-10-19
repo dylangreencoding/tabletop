@@ -30,11 +30,16 @@ export function Dashboard(props: DashboardProps) {
   const [panelOut, setPanelOut] = useState<boolean>(true);
 
   return (
-    <div className="dashboard">
+    <div
+      className={`dashboard ${
+        panelOut ? "dashboard-panel-out" : "dashboard-panel-in"
+      }`}
+    >
       <Canvas
         selectedMap={props.selectedMap}
         mapData={mapData}
         setMapData={setMapData}
+        panelOut={panelOut}
       />
       <PanelGrid
         mapData={mapData}

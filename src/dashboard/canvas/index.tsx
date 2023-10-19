@@ -27,6 +27,8 @@ interface Props {
   selectedMap: any;
   mapData: any;
   setMapData: Function;
+
+  panelOut: boolean;
 }
 
 export default function Canvas(props: Props) {
@@ -40,12 +42,36 @@ export default function Canvas(props: Props) {
     [props.selectedMap]
   );
 
+  const getCanvasWidth = () => {
+    if (window.innerWidth >= window.innerHeight) {
+      if (props.panelOut) {
+        return window.innerWidth * (3 / 4);
+      } else {
+        return window.innerWidth - 80;
+      }
+    } else if (window.innerWidth < window.innerHeight) {
+      return window.innerWidth;
+    }
+  };
+
+  const getCanvasHeight = () => {
+    if (window.innerWidth < window.innerHeight) {
+      if (props.panelOut) {
+        return window.innerHeight * (1 / 4);
+      } else {
+        return window.innerHeight - 80;
+      }
+    } else if (window.innerWidth >= window.innerHeight) {
+      return window.innerHeight;
+    }
+  };
+
   // // useEffect necessary for drawing on canvas
   useEffect(() => {
     // // for setting state after mutation.....
     const mapData = props.mapData;
 
-    // // assure typescript compiler canvasRef is not null
+    // // assure typescript canvasRef is not null
     const canvas = canvasRef.current!;
 
     // // to draw on canvas
@@ -160,8 +186,9 @@ export default function Canvas(props: Props) {
     };
 
     const handleResize = (_e: Event) => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // // assure typescript canvas width is not undefined
+      canvas.width = getCanvasWidth() || window.innerWidth;
+      canvas.height = getCanvasHeight() || window.innerHeight;
       draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
     };
 
@@ -238,16 +265,14 @@ export default function Canvas(props: Props) {
       canvas.removeEventListener("touchend", handleTouchEnd);
       canvas.removeEventListener("touchcancel", handleTouchCancel);
     };
-  }, [props.mapData]);
+  }, [props.mapData, props.panelOut]);
 
   return (
-    <div>
-      <canvas
-        className="canvas"
-        ref={canvasRef}
-        width={window.innerWidth}
-        height={window.innerHeight}
-      />
-    </div>
+    <canvas
+      className="canvas"
+      ref={canvasRef}
+      width={getCanvasWidth()}
+      height={getCanvasHeight()}
+    />
   );
 }

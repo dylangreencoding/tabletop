@@ -11,93 +11,108 @@ html {
 body {
   font-size: 1.8rem;
   font-family: Helvetica, Arial, sans-serif;
-  height: 100%;
-  width: 100%;
-
-  /* to hide scrollbars */
-  overflow: hidden;
 }
+
+
+
+/* ----------------------------------------------------------------- */
+
+
 
 .dashboard {
-  /* TEST -- for mobile, to permit pointer events to function
-  touch-action: none; */
-
-  height: 100%;
-  width: 100%;
-
-  position: relative;
-
   color: hsl(0, 0%, 90%);
   background-color: hsl(0, 0%, 10%);
+
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+
+  display: grid;
 }
+
+/* Dynamically applied to dashboard element to expand/collapse panel */
+.dashboard-panel-out {
+  grid-template-columns: 3fr 1fr;
+}
+.dashboard-panel-in {
+  grid-template-columns: 1fr 80px;
+}
+
+
+
+
+/* ------------------------------------------------------------------ */
+
+
+
+.panel-grid {
+  display: grid;
+}
+
+/* Dynamically applied to panel-grid element to expand/collapse panel */
+.panel-out {
+  grid-template-columns: 1fr 80px;
+}
+.panel-in {
+  grid-template-columns: 80px;
+}
+
+
+
+/* ------------------------------------------------------------------ */
+
+
 
 .canvas {
   /* TEST -- for mobile, to permit pointer events to function */
   touch-action: none;
 }
 
-/* Overlays the canvas */
-.panel-grid {
-  height: 100%;
-  width: 100%;
 
-  position: absolute;
-  top: 0;
-  left: 0;
-  
-  z-index: 9;
-  /* overflow: hidden; */
-  pointer-events: none;
 
-  display: grid;
-}
+/* ------------------------------------------------------------- */
 
-/* Dynamically applied to panel-grid element to expand panel */
-.panel-out {
-  grid-template-columns: 3fr 1fr 6rem;
-}
 
-/* Dynamically applied to panel-grid element to collapse panel */
-.panel-in {
-  grid-template-columns: 1fr 6rem;
-}
 
+/* Dynamically applied to panel element to expand/collapse panel */
 .panel {
-  position: relative;
-  pointer-events: all;
-  color: hsl(0, 0%, 90%);
-  background-color: hsl(0, 0%, 10%);
   border-left: dotted 1px hsl(0, 0%, 50%);
 }
-
 .panel-hidden {
   display: none;
 }
 
+
+
+/* -------------------------------------------------------------- */
+
 .tabs {
-  position: relative;
-  pointer-events: all;
-  color: hsl(0, 0%, 90%);
-  background-color: hsl(0, 0%, 10%);
   border-left: dotted 1px hsl(0, 0%, 50%);
 }
 
+/* --------------------------------------------------------------- */
+
 @media screen and (orientation: portrait) {
+  .dashboard-panel-out {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 3fr;
+  }
+  .dashboard-panel-in {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 80px;
+  }
   .panel-out {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3fr 6rem;
+    grid-template-rows: 1fr 80px;
   }
-
   .panel-in {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 6rem;
+    grid-template-rows: 80px;
   }
-
   .panel {
     border-left: none;
     border-top: dotted 1px hsl(0, 0%, 50%);
   }
-
   .tabs {
     border-left: none;
     border-top: dotted 1px hsl(0, 0%, 50%);
