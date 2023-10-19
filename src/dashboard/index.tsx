@@ -27,6 +27,7 @@ interface DashboardProps {
 export function Dashboard(props: DashboardProps) {
   // // deep copy users selected map
   const [mapData, setMapData] = useState<any>(JSON.parse(props.selectedMap));
+  const [panelOut, setPanelOut] = useState<boolean>(true);
 
   return (
     <div className="dashboard">
@@ -35,7 +36,7 @@ export function Dashboard(props: DashboardProps) {
         mapData={mapData}
         setMapData={setMapData}
       />
-      <Panel mapData={mapData} />
+      <Panel mapData={mapData} panelOut={panelOut} setPanelOut={setPanelOut} />
     </div>
   );
 }

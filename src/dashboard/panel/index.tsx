@@ -3,6 +3,9 @@ import Tabs from "../tabs";
 
 interface Props {
   mapData: any;
+
+  panelOut: boolean;
+  setPanelOut: Function;
 }
 
 export default function Panel(props: Props) {
@@ -12,14 +15,12 @@ export default function Panel(props: Props) {
     props.mapData
   );
   return (
-    <div className="panel-grid">
-      <div>1</div>
-      <div className="right-quarter-panel">
-        <div>
-          {selected.x}, {selected.y} {selected.name}
-        </div>
-        <Tabs />
+    <div className={`${props.panelOut ? "panel-out" : "panel-in"}`}>
+      <div />
+      <div className={`${props.panelOut ? "panel" : "panel-hidden"}`}>
+        {selected.x}, {selected.y} {selected.name}
       </div>
+      <Tabs panelOut={props.panelOut} setPanelOut={props.setPanelOut} />
     </div>
   );
 }
