@@ -63,6 +63,7 @@ body {
 
 .panel-outer {
   display: grid;
+
 }
 
 /* dynamically applied to expand/collapse panel */
@@ -86,6 +87,8 @@ body {
 /* max height property applied dynamically using inline css on PanelInner */
 .panel-inner {
   overflow-y: scroll;
+  border-left: dotted 1px hsl(0, 0%, 50%);
+  padding: 2.4rem 3.2rem 0 3.2rem;
 }
 
 /* dynamically applied to PanelInner element to expand/collapse panel */
@@ -126,9 +129,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
-  gap: 10px;
+  gap: 20px;
+  box-shadow: -3px 0 3px hsl(0, 0%, 8%);
 }
+
 
 
 
@@ -143,14 +147,12 @@ body {
   border: none;
   background: none;
   font-family: inherit;
-  font-size: 30px;
-  line-height: 107%;
   color: inherit;
   
   width: 60px;
   height: 60px;
-  border-radius: 25%;
-  border: hsl(0, 0%, 90%) 1px dotted;
+  line-height: 80%;
+  border-radius: 50%;
 }
 
 .tab-button:hover {
@@ -159,12 +161,19 @@ body {
 }
 
 .tab-button-active {
-  border: hsl(0, 0%, 90%) 5px solid;
+  border: hsl(0, 0%, 90%) 3px solid;
+}
+
+.tab-button-home {
+  margin-top: 20px;
 }
 
 
 
 
+/* --------------------------------------------------------------- */
+/* --------------------------------------------------------------- */
+/* --------------------------------------------------------------- */
 
 /* --------------------------------------------------------------- */
 /* --------------------------------------------------------------- */
@@ -189,9 +198,17 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: 80px;
   }
+  .panel-inner {
+  border-left: none;
+  border-top: dotted 1px hsl(0, 0%, 50%);
+  }
   .tabs {
     flex-direction: row;
+    justify-content: space-around;
     margin-top: 0;
-    margin-left: 10px;
+    box-shadow: 0 -3px 3px hsl(0, 0%, 8%);
+  }
+  .tab-button-home {
+    margin-top: 0;
   }
 }

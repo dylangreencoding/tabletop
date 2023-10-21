@@ -18,7 +18,7 @@ export default function TabButton(props: Props) {
         props.activePanel === props.title ? "tab-button-active" : ""
       }`}
     >
-      <div>{props.icon}</div>
+      {props.icon}
     </button>
   );
 }

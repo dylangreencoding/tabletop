@@ -2,49 +2,43 @@ export default function PlayerMode() {
   return (
     <div>
       <div>player mode goes here...</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
-      <div>v</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
+      <div>player mode goes here...</div>
     </div>
   );
 }
