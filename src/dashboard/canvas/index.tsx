@@ -28,6 +28,7 @@ interface Props {
   mapData: any;
   setMapData: Function;
 
+  setPanelOut: Function;
   panelOut: boolean;
 }
 
@@ -45,7 +46,7 @@ export default function Canvas(props: Props) {
   const getCanvasWidth = () => {
     if (window.innerWidth >= window.innerHeight) {
       if (props.panelOut) {
-        return window.innerWidth * (3 / 4);
+        return window.innerWidth * 0.5;
       } else {
         return window.innerWidth - 80;
       }
@@ -57,7 +58,7 @@ export default function Canvas(props: Props) {
   const getCanvasHeight = () => {
     if (window.innerWidth < window.innerHeight) {
       if (props.panelOut) {
-        return window.innerHeight * (1 / 4);
+        return window.innerHeight * 0.25;
       } else {
         return window.innerHeight - 80;
       }
@@ -186,6 +187,11 @@ export default function Canvas(props: Props) {
     };
 
     const handleResize = (_e: Event) => {
+      // // doing this here ensures PanelInner max-height inline css property is set correctly
+      // // basically just forcing a re-render
+      // // the effect of automatically closing the panel on resize isn't bad either
+      props.setPanelOut(false);
+
       // // assure typescript canvas width is not undefined
       canvas.width = getCanvasWidth() || window.innerWidth;
       canvas.height = getCanvasHeight() || window.innerHeight;

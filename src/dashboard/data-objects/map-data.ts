@@ -1,8 +1,8 @@
 
 export const mapDataTemp : any = {
   id: "",
-  mapName: "new_map",
-  host: "",
+  name: "new_map",
+  creator: "",
   player1: "",
   player2: "",
   player3: "",
@@ -16,7 +16,6 @@ export const mapDataTemp : any = {
 
   selected: { x: 0, y: 0 },
   tool: "select",
-  messages: [],
 
   entities: {},
 }

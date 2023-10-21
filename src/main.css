@@ -16,13 +16,15 @@ body {
 
 
 /* ----------------------------------------------------------------- */
-
-
+/* ----------------------------------------------------------------- */
+/* ----------------------------------------------------------------- */
+/* Dashboard */
 
 .dashboard {
   color: hsl(0, 0%, 90%);
   background-color: hsl(0, 0%, 10%);
 
+  /* svh gets best results on mobile */
   height: 100svh;
   width: 100svw;
   overflow: hidden;
@@ -30,9 +32,9 @@ body {
   display: grid;
 }
 
-/* Dynamically applied to dashboard element to expand/collapse panel */
+/* dynamically applied to expand/collapse panel */
 .dashboard-panel-out {
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 .dashboard-panel-in {
   grid-template-columns: 1fr 80px;
@@ -42,14 +44,28 @@ body {
 
 
 /* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* Canvas */
+
+.canvas {
+  /* for mobile, to prevent browser touch actions within canvas bounds */
+  touch-action: none;
+}
 
 
 
-.panel-grid {
+
+/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* PanelOuter */
+
+.panel-outer {
   display: grid;
 }
 
-/* Dynamically applied to panel-grid element to expand/collapse panel */
+/* dynamically applied to expand/collapse panel */
 .panel-out {
   grid-template-columns: 1fr 80px;
 }
@@ -59,40 +75,104 @@ body {
 
 
 
-/* ------------------------------------------------------------------ */
-
-
-
-.canvas {
-  /* TEST -- for mobile, to permit pointer events to function */
-  touch-action: none;
-}
-
-
 
 /* ------------------------------------------------------------- */
+/* ------------------------------------------------------------- */
+/* ------------------------------------------------------------- */
+/* PanelInner */
 
 
-
-/* Dynamically applied to panel element to expand/collapse panel */
-.panel {
-  border-left: dotted 1px hsl(0, 0%, 50%);
+/* set scrollbar in panel */
+/* max height property applied dynamically using inline css on PanelInner */
+.panel-inner {
+  overflow-y: scroll;
 }
+
+/* dynamically applied to PanelInner element to expand/collapse panel */
 .panel-hidden {
   display: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 1.8rem;
+}
+
+/* track */
+::-webkit-scrollbar-track {
+  background: hsl(0, 0%, 10%);
+}
+
+/* handle */
+::-webkit-scrollbar-thumb {
+  background: hsl(0, 0%, 20%);
+  border-radius: 1.8rem;
+}
+
+/* handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(0, 0%, 5%);
+  cursor: pointer;
 }
 
 
 
 /* -------------------------------------------------------------- */
+/* -------------------------------------------------------------- */
+/* -------------------------------------------------------------- */
+/* Tabs */
 
 .tabs {
-  border-left: dotted 1px hsl(0, 0%, 50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
 }
 
+
+
+
+
+/* --------------------------------------------------------------- */
+/* --------------------------------------------------------------- */
+/* --------------------------------------------------------------- */
+/* TabButton */
+
+.tab-button {
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 30px;
+  line-height: 107%;
+  color: inherit;
+  
+  width: 60px;
+  height: 60px;
+  border-radius: 25%;
+  border: hsl(0, 0%, 90%) 1px dotted;
+}
+
+.tab-button:hover {
+  cursor: pointer;
+  background-color: black;
+}
+
+.tab-button-active {
+  border: hsl(0, 0%, 90%) 5px solid;
+}
+
+
+
+
+
+/* --------------------------------------------------------------- */
+/* --------------------------------------------------------------- */
 /* --------------------------------------------------------------- */
 
 @media screen and (orientation: portrait) {
+  /* canvas is resized in Canvas component */
+
   .dashboard-panel-out {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 3fr;
@@ -109,12 +189,9 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: 80px;
   }
-  .panel {
-    border-left: none;
-    border-top: dotted 1px hsl(0, 0%, 50%);
-  }
   .tabs {
-    border-left: none;
-    border-top: dotted 1px hsl(0, 0%, 50%);
+    flex-direction: row;
+    margin-top: 0;
+    margin-left: 10px;
   }
 }
