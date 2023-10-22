@@ -1,22 +1,28 @@
-import { getSelected } from "../../utility-functions/get-selected";
+import ToolBox from "../../panel-outer/tool-box";
+import SelectedBox from "../../panel-outer/selected-box";
 
 interface Props {
   mapData: any;
+  setMapData: Function;
 }
 
 export default function CreatorMode(props: Props) {
-  const selected = getSelected(
-    props.mapData.selected.x,
-    props.mapData.selected.y,
-    props.mapData
-  );
   return (
     <div>
-      <div>Creator Mode</div>
-      <div>
-        {selected.x}, {selected.y}
+      <div
+        style={{
+          fontSize: "2rem",
+          marginBottom: "2.4rem",
+          fontWeight: "700",
+          letterSpacing: "2px",
+          textAlign: "center",
+          color: "hsl(0, 0%, 15%)",
+        }}
+      >
+        {props.mapData.name} &#10042; creator mode
       </div>
-      <div>{selected.name}</div>
+      <ToolBox mapData={props.mapData} setMapData={props.setMapData} />
+      <SelectedBox mapData={props.mapData} setMapData={props.setMapData} />
     </div>
   );
 }

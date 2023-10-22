@@ -11,16 +11,20 @@ export function selectLocation (mapData: any, mouse: any, matrix: Array<Array<nu
   switch(mapData.tool) {
     case "select":
       break;
-    case "add":
+    case "create":
       mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)] = {
         x: mapData.selected.x,
         y: mapData.selected.y,
-        name: "bob-clone",
+        type: "type", // // "wall" or "creature", if left as "type" square will be description only; nothing will be drawn
+        name: "name", // // give it a name, default name is set to equal type when type is set ("wall" or "creature")
+        fill: "fill", // // hex code to be used by canvas rendering context (creatures only)
+        stroke: "stroke", // // hex code to be used by canvas rendering context (creatures only)
+        text: "text", // // brief narrative color to be displayed when player occupies or investigates square
       };
       matrix[mapData.selected.x][mapData.selected.y] = 1;
-      console.log('HERE', matrix[mapData.selected.x][mapData.selected.y], mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)])
+      console.log('created here:', matrix[mapData.selected.x][mapData.selected.y], mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)])
       break;
-    case "remove":
+    case "delete":
       delete mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)];
       delete matrix[mapData.selected.x][mapData.selected.y];
       break;

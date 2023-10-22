@@ -131,12 +131,12 @@ export default function Canvas(props: Props) {
           props.mapData.tool = "select";
           props.setMapData({ ...props.mapData, mapData });
           break;
-        case "a":
-          props.mapData.tool = "add";
+        case "c":
+          props.mapData.tool = "create";
           props.setMapData({ ...props.mapData, mapData });
           break;
-        case "r":
-          props.mapData.tool = "remove";
+        case "d":
+          props.mapData.tool = "delete";
           props.setMapData({ ...props.mapData, mapData });
           break;
         case "[":

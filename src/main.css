@@ -10,7 +10,8 @@ html {
 
 body {
   font-size: 1.8rem;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Mulish', sans-serif;
+  /* font-family: 'Zilla Slab', serif; */
 }
 
 
@@ -22,7 +23,7 @@ body {
 
 .dashboard {
   color: hsl(0, 0%, 90%);
-  background-color: hsl(0, 0%, 10%);
+  background-color: #121212;
 
   /* svh gets best results on mobile */
   height: 100svh;
@@ -103,12 +104,12 @@ body {
 
 /* track */
 ::-webkit-scrollbar-track {
-  background: hsl(0, 0%, 10%);
+  background: #121212;
 }
 
 /* handle */
 ::-webkit-scrollbar-thumb {
-  background: hsl(0, 0%, 20%);
+  background: hsl(0, 0%, 15%);
   border-radius: 1.8rem;
 }
 
@@ -130,7 +131,8 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  box-shadow: -3px 0 3px hsl(0, 0%, 8%);
+  border-left: dotted 1px hsl(0, 0%, 50%);
+  /* box-shadow: -3px 0 3px hsl(0, 0%, 8%); */
 }
 
 
@@ -151,16 +153,20 @@ body {
   
   width: 60px;
   height: 60px;
-  line-height: 80%;
+  line-height: 85%;
   border-radius: 50%;
 }
 
 .tab-button:hover {
   cursor: pointer;
-  background-color: black;
+  border: hsl(0, 0%, 50%) 3px dotted;
 }
 
 .tab-button-active {
+  border: hsl(0, 0%, 90%) 3px solid;
+}
+
+.tab-button-active:hover {
   border: hsl(0, 0%, 90%) 3px solid;
 }
 
@@ -174,6 +180,67 @@ body {
 /* --------------------------------------------------------------- */
 /* --------------------------------------------------------------- */
 /* --------------------------------------------------------------- */
+/* Toolbox */
+
+.tool-box-wrapper {
+  margin-bottom: 2.4rem;
+}
+
+.tool-box {
+
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    margin-bottom: 1.2rem;
+    width: 100%;
+
+}
+
+
+
+
+/* --------------------------------------------------------------- */
+/* --------------------------------------------------------------- */
+/* --------------------------------------------------------------- */
+/* ToolboxButton */
+
+.tool-box-button {
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+  font-size: 1.8rem;
+  border-radius: 3px;
+  letter-spacing: 2px;
+
+  width: 33.3333%;
+  height: 100%;
+}
+
+.tool-box-button:hover {
+  cursor: pointer;
+  background-color: black;
+}
+
+.tool-box-button-active {
+  background-color: #2e0000;
+}
+
+.tool-box-button-active:hover {
+  background-color: #2e0000;
+}
+
+
+/* --------------------------------------------------------------- */
+/* --------------------------------------------------------------- */
+/* --------------------------------------------------------------- */
+/* ToolTip */
+
+.tool-tip ul {
+  list-style: none;
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
 
 /* --------------------------------------------------------------- */
 /* --------------------------------------------------------------- */
@@ -181,6 +248,9 @@ body {
 
 @media screen and (orientation: portrait) {
   /* canvas is resized in Canvas component */
+
+  /* -------------------------------------------------------*/
+  /* Dashboard */
 
   .dashboard-panel-out {
     grid-template-columns: 1fr;
@@ -190,6 +260,10 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 80px;
   }
+
+  /* ------------------------------------------------ */
+  /* PanelOuter */
+
   .panel-out {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 80px;
@@ -198,16 +272,28 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: 80px;
   }
+
+  /* ----------------------------------------------------- */
+  /* PanelInner */
+
   .panel-inner {
   border-left: none;
   border-top: dotted 1px hsl(0, 0%, 50%);
   }
+
+  /* ------------------------------------------------------- */ 
+  /* Tabs */
+
   .tabs {
     flex-direction: row;
     justify-content: space-around;
     margin-top: 0;
-    box-shadow: 0 -3px 3px hsl(0, 0%, 8%);
+    border-left: none;
+    border-top: dotted 1px hsl(0, 0%, 50%);
+    /* box-shadow: 0 -3px 3px hsl(0, 0%, 8%); */
   }
+
+  /* TabButton */
   .tab-button-home {
     margin-top: 0;
   }

@@ -1,7 +1,7 @@
 
 export const mapDataTemp : any = {
   id: "",
-  name: "new_map",
+  name: "map_name",
   creator: "",
   player1: "",
   player2: "",

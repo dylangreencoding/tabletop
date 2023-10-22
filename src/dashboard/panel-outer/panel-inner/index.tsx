@@ -16,7 +16,9 @@ export default function PanelInner(props: Props) {
       case "Home":
         return <Home />;
       case "Creator Mode":
-        return <CreatorMode mapData={props.mapData} />;
+        return (
+          <CreatorMode mapData={props.mapData} setMapData={props.setMapData} />
+        );
       case "Player Mode":
         return <PlayerMode />;
     }
