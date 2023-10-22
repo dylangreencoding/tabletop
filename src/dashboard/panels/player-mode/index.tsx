@@ -3,15 +3,21 @@ export default function PlayerMode() {
     <div>
       <div
         style={{
-          fontSize: "2rem",
-          marginBottom: "2.4rem",
-          fontWeight: "700",
+          fontSize: "1.2rem",
+          marginBottom: "0.6rem",
           letterSpacing: "2px",
           textAlign: "center",
           color: "hsl(0, 0%, 15%)",
         }}
       >
-        ... ... &#10042; player mode
+        <strong
+          style={{
+            fontWeight: "800",
+          }}
+        >
+          PLAYER MODE
+        </strong>{" "}
+        &#10042; TABLETOP
       </div>
       <div>...</div>
       <div>...</div>

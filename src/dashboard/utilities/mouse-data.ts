@@ -1,3 +1,10 @@
+export const mouse = {
+  isPressed: false,
+  didMoveMap: false,
+  movement: { x: 0, y: 0 },
+  position: { x: NaN, y: NaN },
+}
+
 export const getMouseMovement = (e: MouseEvent) => {
   return {
     x: e.movementX,

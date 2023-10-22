@@ -5,6 +5,8 @@ import PlayerMode from "../../panels/player-mode";
 interface Props {
   mapData: any;
   setMapData: Function;
+  emptyEntity: any;
+  setEmptyEntity: Function;
 
   panelOut: boolean;
   activePanel: string;
@@ -17,7 +19,12 @@ export default function PanelInner(props: Props) {
         return <Home />;
       case "Creator Mode":
         return (
-          <CreatorMode mapData={props.mapData} setMapData={props.setMapData} />
+          <CreatorMode
+            mapData={props.mapData}
+            setMapData={props.setMapData}
+            emptyEntity={props.emptyEntity}
+            setEmptyEntity={props.setEmptyEntity}
+          />
         );
       case "Player Mode":
         return <PlayerMode />;

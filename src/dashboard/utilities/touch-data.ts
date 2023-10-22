@@ -1,3 +1,10 @@
+export const touch = {
+  didMoveMap: false,
+  lastTouch: { x: 0, y: 0 },
+  thisTouch: { x: 0, y: 0 },
+  position: { x: 0, y: 0 },
+}
+
 export const getTouch = (e: TouchEvent) => {
   // // Math.trunc necessary for touch events, unlike mouse events
   let clientX = Math.trunc(e.targetTouches[0].clientX);

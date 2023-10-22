@@ -4,7 +4,7 @@ import { getXYStr, getSelected } from "./get-selected";
 // // these functions are impure as sewer water
 // // they exist to clean up code in event handlers
 
-export function selectLocation (mapData: any, mouse: any, matrix: Array<Array<number>>) {
+export function selectLocation (mapData: any, mouse: any, matrix: Array<Array<number>>, emptyEntity: any) {
   mapData.selected.x = (mouse.position.x - mapData.x) / mapData.scale;
   mapData.selected.y = (mouse.position.y - mapData.y) / mapData.scale;
   
@@ -12,15 +12,11 @@ export function selectLocation (mapData: any, mouse: any, matrix: Array<Array<nu
     case "select":
       break;
     case "create":
-      mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)] = {
-        x: mapData.selected.x,
-        y: mapData.selected.y,
-        type: "type", // // "wall" or "creature", if left as "type" square will be description only; nothing will be drawn
-        name: "name", // // give it a name, default name is set to equal type when type is set ("wall" or "creature")
-        fill: "fill", // // hex code to be used by canvas rendering context (creatures only)
-        stroke: "stroke", // // hex code to be used by canvas rendering context (creatures only)
-        text: "text", // // brief narrative color to be displayed when player occupies or investigates square
-      };
+      // // TODO: replace JSON.parse(JSON.stringify()) with cloning method (lodash?)
+      const entity = JSON.parse(JSON.stringify(emptyEntity))
+      entity.x = mapData.selected.x;
+      entity.y = mapData.selected.y;
+      mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)] = entity;
       matrix[mapData.selected.x][mapData.selected.y] = 1;
       console.log('created here:', matrix[mapData.selected.x][mapData.selected.y], mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)])
       break;
@@ -37,13 +33,12 @@ export function move (mapData: any, matrix: Array<Array<number>>, x: number, y: 
 
 
   if (selected.name !== "" && selected.name !== "~" && nextSquare.name === "~" && shiftKey === false) {
+    
     console.log(nextSquare.name);
     // // move piece
-    mapData.entities[getXYStr(selected.x + x, selected.y + y)] = {
-      x: mapData.selected.x + x,
-      y: mapData.selected.y + y,
-      name: selected.name,
-    };
+    mapData.entities[getXYStr(selected.x + x, selected.y + y)] = JSON.parse(JSON.stringify(selected));
+    mapData.entities[getXYStr(selected.x + x, selected.y + y)].x += x;
+    mapData.entities[getXYStr(selected.x + x, selected.y + y)].y += y;
     matrix[selected.x + x][selected.y + y] = 1;
     delete matrix[selected.x][selected.y];
     delete mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)];

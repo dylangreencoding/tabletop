@@ -3,15 +3,21 @@ export default function Home() {
     <div>
       <div
         style={{
-          fontSize: "2rem",
-          marginBottom: "2.4rem",
-          fontWeight: "700",
+          fontSize: "1.2rem",
+          marginBottom: "0.6rem",
           letterSpacing: "2px",
           textAlign: "center",
           color: "hsl(0, 0%, 15%)",
         }}
       >
-        TABLETOP &#10042; home
+        <strong
+          style={{
+            fontWeight: "800",
+          }}
+        >
+          HOME
+        </strong>{" "}
+        &#10042; TABLETOP
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 import ToolBoxButton from "./tool-box-button";
-import ToolTip from "./tool-tip";
 
 interface Props {
   mapData: any;
@@ -29,7 +28,6 @@ export default function ToolBox(props: Props) {
           mapData={props.mapData}
         />
       </div>
-      <ToolTip tool={props.mapData.tool} />
     </div>
   );
 }

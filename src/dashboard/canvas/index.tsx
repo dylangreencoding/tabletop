@@ -2,31 +2,28 @@ import { useRef, useEffect, useMemo } from "react";
 
 import { draw } from "./draw";
 
-import { mouse } from "../data-objects/mouse-data";
 import {
+  mouse,
   getMouseMovement,
   getMousePosition,
-} from "../utility-functions/get-mouse-data";
+} from "../utilities/mouse-data";
 
-import { touch } from "../data-objects/touch-data";
-import {
-  getTouch,
-  getTouchPosition,
-} from "../utility-functions/get-touch-data";
+import { touch, getTouch, getTouchPosition } from "../utilities/touch-data";
 
-import { getHashX, getHashY } from "../utility-functions/get-hash-maps";
-import { getMatrix } from "../utility-functions/get-matrix";
+import { getHashX, getHashY } from "../utilities/get-hash-maps";
+import { getMatrix } from "../utilities/get-matrix";
 
 import {
   selectLocation,
   keepMapInView,
   move,
-} from "../utility-functions/canvas-event-logic";
+} from "../utilities/canvas-event-logic";
 
 interface Props {
   selectedMap: any;
   mapData: any;
   setMapData: Function;
+  emptyEntity: any;
 
   setPanelOut: Function;
   panelOut: boolean;
@@ -81,6 +78,7 @@ export default function Canvas(props: Props) {
     // // generate grid hashmaps
     let hashX = getHashX(props.mapData, canvas.width);
     let hashY = getHashY(props.mapData, canvas.height);
+    console.log(props.mapData);
 
     // // initital draw
     draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
@@ -116,7 +114,7 @@ export default function Canvas(props: Props) {
         mouse.position.y !== undefined
       ) {
         // // select if map was not moved
-        selectLocation(props.mapData, mouse, matrix);
+        selectLocation(props.mapData, mouse, matrix, props.emptyEntity);
       }
 
       mouse.didMoveMap = false;
@@ -125,25 +123,21 @@ export default function Canvas(props: Props) {
       props.setMapData({ ...props.mapData, mapData });
     };
 
+    const handleMouseLeave = (_e: MouseEvent) => {
+      mouse.position.x = NaN;
+      mouse.position.y = NaN;
+      draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
+    };
+
     const handleKeyUp = (e: KeyboardEvent) => {
       switch (e.key) {
-        case "s":
-          props.mapData.tool = "select";
-          props.setMapData({ ...props.mapData, mapData });
-          break;
-        case "c":
-          props.mapData.tool = "create";
-          props.setMapData({ ...props.mapData, mapData });
-          break;
-        case "d":
-          props.mapData.tool = "delete";
-          props.setMapData({ ...props.mapData, mapData });
-          break;
-        case "[":
+        case "`":
           // // temporary, for development
+          props.setMapData({ ...props.mapData, mapData });
+          console.log(props.mapData);
           sessionStorage.setItem("tabletopUI", JSON.stringify(props.mapData));
           break;
-        case "]":
+        case "~":
           // // temporary, for development
           sessionStorage.removeItem("tabletopUI");
           location.reload();
@@ -233,7 +227,7 @@ export default function Canvas(props: Props) {
         touch.position.y !== undefined
       ) {
         // // select if map was not moved
-        selectLocation(props.mapData, touch, matrix);
+        selectLocation(props.mapData, touch, matrix, props.emptyEntity);
       }
 
       touch.didMoveMap = false;
@@ -250,6 +244,7 @@ export default function Canvas(props: Props) {
     canvas.addEventListener("mousedown", handleMouseDown);
     canvas.addEventListener("mousemove", handleMouseMove);
     canvas.addEventListener("mouseup", handleMouseUp);
+    canvas.addEventListener("mouseleave", handleMouseLeave);
     canvas.addEventListener("wheel", handleWheel);
     document.addEventListener("keyup", handleKeyUp);
     document.addEventListener("keydown", handleKeyDown);
@@ -262,6 +257,7 @@ export default function Canvas(props: Props) {
       canvas.removeEventListener("mousedown", handleMouseDown);
       canvas.removeEventListener("mousemove", handleMouseMove);
       canvas.removeEventListener("mouseup", handleMouseUp);
+      canvas.removeEventListener("mouseleave", handleMouseLeave);
       canvas.removeEventListener("wheel", handleWheel);
       document.removeEventListener("keyup", handleKeyUp);
       document.removeEventListener("keydown", handleKeyDown);

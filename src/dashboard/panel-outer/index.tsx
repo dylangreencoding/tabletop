@@ -4,6 +4,8 @@ import PanelInner from "./panel-inner";
 interface Props {
   mapData: any;
   setMapData: Function;
+  emptyEntity: any;
+  setEmptyEntity: Function;
 
   panelOut: boolean;
   setPanelOut: Function;
@@ -23,6 +25,8 @@ export default function PanelOuter(props: Props) {
         setMapData={props.setMapData}
         panelOut={props.panelOut}
         activePanel={props.activePanel}
+        emptyEntity={props.emptyEntity}
+        setEmptyEntity={props.setEmptyEntity}
       />
       <Tabs
         panelOut={props.panelOut}

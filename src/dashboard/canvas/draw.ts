@@ -1,3 +1,5 @@
+import { getSelected, getXYStr } from "../utilities/get-selected";
+
 export function draw(ctx: any, canvasWidth: number, canvasHeight: number, mapData: any, mouseData: any, matrix: any) {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
   ctx.strokeStyle = "#252525";
@@ -73,14 +75,37 @@ export function draw(ctx: any, canvasWidth: number, canvasHeight: number, mapDat
     for (let j = matrixColumnStart; j < matrixColumnEnd; j++) {
       // // returns false for empty slots aka elisions
       if (matrix[i].hasOwnProperty(j)) {
-        ctx.fillStyle = 'darkgreen';
-        ctx.beginPath();
-        ctx.arc(i * mapData.scale + mapData.x, j * mapData.scale + mapData.y, mapData.scale*0.3, 0, Math.PI*2);
-        ctx.closePath();
-        ctx.fill();
+        if (mapData.entities[getXYStr(i, j)].type === "empty") {
+          ctx.strokeStyle = "#252525";
+          ctx.beginPath();
+          ctx.arc(i * mapData.scale + mapData.x, j * mapData.scale + mapData.y, mapData.scale*0.1, 0, Math.PI*2);
+          ctx.closePath();
+          ctx.stroke();
+        } else if (mapData.entities[getXYStr(i, j)].type === "wall") {
+          ctx.fillStyle = '#737373';
+          ctx.beginPath();
+          ctx.fillRect(i * mapData.scale + mapData.x - mapData.scale*0.5,  j * mapData.scale + mapData.y - mapData.scale*0.5, mapData.scale, mapData.scale)
+          ctx.closePath();
+        } else if (mapData.entities[getXYStr(i, j)].type === "creature") {
+          ctx.fillStyle = 'darkgreen';
+          ctx.beginPath();
+          ctx.arc(i * mapData.scale + mapData.x, j * mapData.scale + mapData.y, mapData.scale*0.3, 0, Math.PI*2);
+          ctx.closePath();
+          ctx.fill();
+        }
       }
     }
   }
+
+  // // draw text
+  const selected = getSelected(mapData.selected.x, mapData.selected.y, mapData)
+  ctx.font = "18px monospace";
+  ctx.fillStyle = '#e0e0e0a6';
+  ctx.fillText(`${selected.x}, ${selected.y} ${selected.name}`, 10, 18);
+  ctx.fillText(`${mapData.name}`, 10, canvasHeight - 18);
+
+
+
 
   //////////////////////////////////////////////////////
   /////////////////////////////////////////////////////
@@ -98,5 +123,9 @@ export function draw(ctx: any, canvasWidth: number, canvasHeight: number, mapDat
   ctx.arc(mouseData.position.x, mouseData.position.y, mapData.scale*0.5, 0, Math.PI*2);
   ctx.closePath();
   ctx.stroke();
-}
 
+
+
+  
+   
+    }

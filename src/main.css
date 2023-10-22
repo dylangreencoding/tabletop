@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-family: 'Mulish', sans-serif;
   /* font-family: 'Zilla Slab', serif; */
 }
@@ -88,8 +88,8 @@ body {
 /* max height property applied dynamically using inline css on PanelInner */
 .panel-inner {
   overflow-y: scroll;
-  border-left: dotted 1px hsl(0, 0%, 50%);
-  padding: 2.4rem 3.2rem 0 3.2rem;
+  /* border-left: dotted 1px hsl(0, 0%, 50%); */
+  padding: 0.6rem 0.6rem 0 0.6rem;
 }
 
 /* dynamically applied to PanelInner element to expand/collapse panel */
@@ -183,7 +183,7 @@ body {
 /* Toolbox */
 
 .tool-box-wrapper {
-  margin-bottom: 2.4rem;
+  margin-bottom: 3.6rem;
 }
 
 .tool-box {
@@ -209,7 +209,7 @@ body {
   background: none;
   font-family: inherit;
   color: inherit;
-  font-size: 1.8rem;
+  font-size: inherit;
   border-radius: 3px;
   letter-spacing: 2px;
 
@@ -224,6 +224,7 @@ body {
 
 .tool-box-button-active {
   background-color: #2e0000;
+  font-weight: 700;
 }
 
 .tool-box-button-active:hover {
@@ -231,16 +232,82 @@ body {
 }
 
 
-/* --------------------------------------------------------------- */
-/* --------------------------------------------------------------- */
-/* --------------------------------------------------------------- */
-/* ToolTip */
 
-.tool-tip ul {
-  list-style: none;
-  font-size: 1.4rem;
-  line-height: 2rem;
+
+
+/* --------------------------------------------------------------- */
+/* --------------------------------------------------------------- */
+/* --------------------------------------------------------------- */
+/* CreateForm */
+
+
+
+.create-form {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 2.4rem;
 }
+
+.create-form label {
+  text-align: right;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+.create-form input, .create-form select {
+  border: none;
+  font-family: inherit;
+  background-color: hsla(0, 0%, 90%, 0.10);
+
+  height: 3rem;
+  width: 75%;
+}
+
+.create-form input:focus, .create-form select:focus {
+  outline: none;
+  background-color: hsla(0, 0%, 90%, 0.65)
+}
+
+.create-form button {
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+  border-bottom: 3px solid hsl(0, 0%, 50%);
+  line-height: 2.4rem;
+}
+
+.create-form button:hover {
+  cursor: pointer;
+  background-color: black;
+}
+
+
+
+
+/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* atomic styles */
+
+
+.grid-column-start-end {
+  grid-column: 1 / -1;
+}
+
+
+
+
+
+
 
 /* --------------------------------------------------------------- */
 /* --------------------------------------------------------------- */
