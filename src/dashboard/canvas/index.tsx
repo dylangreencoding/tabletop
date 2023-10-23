@@ -183,9 +183,7 @@ export default function Canvas(props: Props) {
     const handleResize = (_e: Event) => {
       // // doing this here ensures PanelInner max-height inline css property is set correctly
       // // basically just forcing a re-render
-      // // the effect of automatically closing the panel on resize isn't bad either
       props.setPanelOut(false);
-
       // // assure typescript canvas width is not undefined
       canvas.width = getCanvasWidth() || window.innerWidth;
       canvas.height = getCanvasHeight() || window.innerHeight;

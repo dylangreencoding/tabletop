@@ -265,6 +265,8 @@ body {
   height: 3rem;
   width: 75%;
   margin-bottom: 1.2rem;
+
+  touch-action: none;
 }
 
 .create-form input:focus {

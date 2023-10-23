@@ -52,9 +52,6 @@ export default function CreateForm(props: Props) {
           props.entityTemplate.name = e.target.value;
           props.setEntityTemplate({ ...props.entityTemplate, entityTemplate });
         }}
-        onFocus={(e) => {
-          e.preventDefault();
-        }}
       ></input>
       <div>
         <label htmlFor="name-attribute">Description </label>
@@ -74,9 +71,6 @@ export default function CreateForm(props: Props) {
           const entityTemplate = props.entityTemplate;
           props.entityTemplate.text = e.target.value;
           props.setEntityTemplate({ ...props.entityTemplate, entityTemplate });
-        }}
-        onFocus={(e) => {
-          e.preventDefault();
         }}
       ></input>
     </form>
