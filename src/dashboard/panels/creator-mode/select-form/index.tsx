@@ -64,6 +64,18 @@ export default function SelectForm(props: Props) {
               ].name = e.target.value;
               props.setMapData({ ...props.mapData, mapData });
             }}
+            onTouchStart={(e) => {
+              e.preventDefault();
+            }}
+            onTouchMove={(e) => {
+              e.preventDefault();
+            }}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+            }}
+            onTouchCancel={(e) => {
+              e.preventDefault();
+            }}
           ></input>
           <div>
             <label htmlFor="name-attribute">Description </label>
@@ -85,6 +97,18 @@ export default function SelectForm(props: Props) {
                 getXYStr(props.mapData.selected.x, props.mapData.selected.y)
               ].text = e.target.value;
               props.setMapData({ ...props.mapData, mapData });
+            }}
+            onTouchStart={(e) => {
+              e.preventDefault();
+            }}
+            onTouchMove={(e) => {
+              e.preventDefault();
+            }}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+            }}
+            onTouchCancel={(e) => {
+              e.preventDefault();
             }}
           ></input>
         </form>
