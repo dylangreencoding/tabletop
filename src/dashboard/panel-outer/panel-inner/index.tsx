@@ -36,11 +36,11 @@ export default function PanelInner(props: Props) {
       className={`${props.panelOut ? "panel-inner" : "panel-hidden"}`}
       // // inline style here allows dynamic calculation of max-height
       // // full functionality dependent on canvas resize event handler triggering re-render
-      // style={
-      //   window.innerHeight > window.innerWidth
-      //     ? { maxHeight: `${window.innerHeight * 0.75 - 80}px` }
-      //     : { maxHeight: `100svh` }
-      // }
+      style={
+        window.innerHeight > window.innerWidth
+          ? { maxHeight: `${window.innerHeight * 0.75 - 80}px` }
+          : { maxHeight: `100svh` }
+      }
     >
       {displayPanel()}
     </div>

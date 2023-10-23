@@ -1,5 +1,6 @@
-// import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 import CreateTypeButton from "./create-type-button";
+import MobileKeyboard from "../../../../mobile-keyboard";
 
 interface Props {
   entityTemplate: any;
@@ -7,6 +8,8 @@ interface Props {
 }
 
 export default function CreateForm(props: Props) {
+  const [keyBoardOpen, setKeyboardOpen] = useState<boolean>(false);
+
   return (
     <form className="create-form">
       <div>
@@ -86,6 +89,7 @@ export default function CreateForm(props: Props) {
         }}
         onTouchStart={(e) => {
           e.preventDefault();
+          setKeyboardOpen(true);
         }}
         onTouchMove={(e) => {
           e.preventDefault();
@@ -97,6 +101,9 @@ export default function CreateForm(props: Props) {
           e.preventDefault();
         }}
       ></input>
+      {keyBoardOpen ? (
+        <MobileKeyboard setKeyBoardOpen={setKeyboardOpen} />
+      ) : null}
     </form>
   );
 }
