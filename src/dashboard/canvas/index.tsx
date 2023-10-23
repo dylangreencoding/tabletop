@@ -23,7 +23,7 @@ interface Props {
   selectedMap: any;
   mapData: any;
   setMapData: Function;
-  emptyEntity: any;
+  entityTemplate: any;
 
   setPanelOut: Function;
   panelOut: boolean;
@@ -114,7 +114,7 @@ export default function Canvas(props: Props) {
         mouse.position.y !== undefined
       ) {
         // // select if map was not moved
-        selectLocation(props.mapData, mouse, matrix, props.emptyEntity);
+        selectLocation(props.mapData, mouse, matrix, props.entityTemplate);
       }
 
       mouse.didMoveMap = false;
@@ -227,7 +227,7 @@ export default function Canvas(props: Props) {
         touch.position.y !== undefined
       ) {
         // // select if map was not moved
-        selectLocation(props.mapData, touch, matrix, props.emptyEntity);
+        selectLocation(props.mapData, touch, matrix, props.entityTemplate);
       }
 
       touch.didMoveMap = false;

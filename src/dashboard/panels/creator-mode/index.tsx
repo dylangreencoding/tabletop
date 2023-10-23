@@ -5,8 +5,8 @@ import CreateForm from "./create-form";
 interface Props {
   mapData: any;
   setMapData: Function;
-  emptyEntity: any;
-  setEmptyEntity: Function;
+  entityTemplate: any;
+  setEntityTemplate: Function;
 }
 
 export default function CreatorMode(props: Props) {
@@ -19,8 +19,8 @@ export default function CreatorMode(props: Props) {
       case "create":
         return (
           <CreateForm
-            emptyEntity={props.emptyEntity}
-            setEmptyEntity={props.setEmptyEntity}
+            entityTemplate={props.entityTemplate}
+            setEntityTemplate={props.setEntityTemplate}
           />
         );
       case "delete":
@@ -36,7 +36,7 @@ export default function CreatorMode(props: Props) {
           marginBottom: "0.6rem",
           letterSpacing: "2px",
           textAlign: "center",
-          color: "hsl(0, 0%, 15%)",
+          color: "hsl(0, 0%, 25%)",
         }}
       >
         <strong

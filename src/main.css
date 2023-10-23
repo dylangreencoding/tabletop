@@ -243,49 +243,62 @@ body {
 
 
 .create-form {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: repeat(4, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
   margin-bottom: 2.4rem;
 }
 
 .create-form label {
-  text-align: right;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
-.create-form input, .create-form select {
+.create-form input {
   border: none;
   font-family: inherit;
   background-color: hsla(0, 0%, 90%, 0.10);
 
   height: 3rem;
   width: 75%;
+  margin-bottom: 1.2rem;
 }
 
-.create-form input:focus, .create-form select:focus {
+.create-form input:focus {
   outline: none;
   background-color: hsla(0, 0%, 90%, 0.65)
 }
 
-.create-form button {
+.entity-type-button {
   border: none;
   background: none;
   font-family: inherit;
   color: inherit;
   font-size: inherit;
-  border-bottom: 3px solid hsl(0, 0%, 50%);
-  line-height: 2.4rem;
+  height: 30px;
+  width: 25%;
+  margin-bottom: 1.2rem;
+  
 }
 
-.create-form button:hover {
+
+.entity-type-button:hover {
   cursor: pointer;
   background-color: black;
 }
+
+.entity-type-button-active {
+  background-color: #2e0000;
+  font-weight: 700;
+}
+
+.entity-type-button-active:hover {
+  background-color: #2e0000;
+}
+
+
 
 
 
@@ -298,11 +311,17 @@ body {
 /* ------------------------------------------------------------------ */
 /* atomic styles */
 
-
-.grid-column-start-end {
-  grid-column: 1 / -1;
+.flex {
+  display: flex;
 }
 
+.space-between {
+  justify-content: space-between;
+}
+
+.space-around {
+  justify-content: space-around;
+}
 
 
 

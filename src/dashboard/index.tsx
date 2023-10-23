@@ -35,7 +35,7 @@ export function Dashboard(props: DashboardProps) {
   // // used by create tool and in canvas
   // // it is its own state rather than existing in mapData
   // // that way canvas useEffect is not called when it is modified
-  const [emptyEntity, setEmptyEntity] = useState<any>(emptyEntityTemplate);
+  const [entityTemplate, setEntityTemplate] = useState<any>(emptyEntityTemplate);
 
   // // used to expand/collapse panel
   // // initialized here as canvas depends on it for resizing
@@ -60,7 +60,7 @@ export function Dashboard(props: DashboardProps) {
         setMapData={setMapData}
         panelOut={panelOut}
         setPanelOut={setPanelOut}
-        emptyEntity={emptyEntity}
+        entityTemplate={entityTemplate}
       />
       <PanelOuter
         mapData={mapData}
@@ -69,8 +69,8 @@ export function Dashboard(props: DashboardProps) {
         setPanelOut={setPanelOut}
         activePanel={activePanel}
         setActivePanel={setActivePanel}
-        emptyEntity={emptyEntity}
-        setEmptyEntity={setEmptyEntity}
+        entityTemplate={entityTemplate}
+        setEntityTemplate={setEntityTemplate}
       />
     </div>
   );
