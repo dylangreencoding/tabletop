@@ -47,6 +47,7 @@ export default function CreateForm(props: Props) {
         value={props.entityTemplate.name}
         onChange={(e) => {
           e.preventDefault();
+          console.log(e.target.value);
           const entityTemplate = props.entityTemplate;
           props.entityTemplate.name = e.target.value;
           props.setEntityTemplate({ ...props.entityTemplate, entityTemplate });

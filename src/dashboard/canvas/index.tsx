@@ -267,7 +267,7 @@ export default function Canvas(props: Props) {
       canvas.removeEventListener("touchend", handleTouchEnd);
       canvas.removeEventListener("touchcancel", handleTouchCancel);
     };
-  }, [props.mapData, props.panelOut]);
+  }, [props.mapData, props.panelOut, props.entityTemplate]);
 
   return (
     <canvas

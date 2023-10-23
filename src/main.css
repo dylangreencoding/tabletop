@@ -259,6 +259,7 @@ body {
 .create-form input {
   border: none;
   font-family: inherit;
+  font-size: inherit;
   background-color: hsla(0, 0%, 90%, 0.10);
 
   height: 3rem;
