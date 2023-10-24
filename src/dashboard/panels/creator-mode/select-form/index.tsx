@@ -16,20 +16,13 @@ export default function SelectForm(props: Props) {
   return (
     <div>
       {selected.name !== "~" ? (
-        <form className="create-form">
+        <form className="create-select-form">
           {" "}
           <div>
             <label>Type </label>
             {selected.type}
           </div>
           <div className="flex space-around">
-            <SelectTypeButton
-              type={"empty"}
-              title={`Create empty spaces with descriptions`}
-              mapData={props.mapData}
-              setMapData={props.setMapData}
-              selected={selected}
-            />
             <SelectTypeButton
               type={"wall"}
               title={`Create walls`}
@@ -64,16 +57,7 @@ export default function SelectForm(props: Props) {
               ].name = e.target.value;
               props.setMapData({ ...props.mapData, mapData });
             }}
-            onTouchStart={(e) => {
-              e.preventDefault();
-            }}
-            onTouchMove={(e) => {
-              e.preventDefault();
-            }}
             onTouchEnd={(e) => {
-              e.preventDefault();
-            }}
-            onTouchCancel={(e) => {
               e.preventDefault();
             }}
           ></input>
@@ -81,10 +65,10 @@ export default function SelectForm(props: Props) {
             <label htmlFor="name-attribute">Description </label>
             {selected.text}
           </div>
-          <input
+          <textarea
             name="text-attribute"
             id="text-attribute"
-            type="text"
+            rows={6}
             required
             title="Give a description"
             placeholder="Give a description"
@@ -98,19 +82,10 @@ export default function SelectForm(props: Props) {
               ].text = e.target.value;
               props.setMapData({ ...props.mapData, mapData });
             }}
-            onTouchStart={(e) => {
-              e.preventDefault();
-            }}
-            onTouchMove={(e) => {
-              e.preventDefault();
-            }}
             onTouchEnd={(e) => {
               e.preventDefault();
             }}
-            onTouchCancel={(e) => {
-              e.preventDefault();
-            }}
-          ></input>
+          ></textarea>
         </form>
       ) : (
         <span>Nothing here...</span>

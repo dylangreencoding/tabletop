@@ -75,15 +75,7 @@ export function draw(ctx: any, canvasWidth: number, canvasHeight: number, mapDat
     for (let j = matrixColumnStart; j < matrixColumnEnd; j++) {
       // // returns false for empty slots aka elisions
       if (matrix[i].hasOwnProperty(j)) {
-        if (mapData.entities[getXYStr(i, j)].type === "empty") {
-          ctx.fillStyle = "#252525";
-          ctx.beginPath();
-          ctx.fillRect(i * mapData.scale + mapData.x - mapData.scale*0.5,  j * mapData.scale + mapData.y - mapData.scale*0.5, mapData.scale, mapData.scale)
-
-          // ctx.arc(i * mapData.scale + mapData.x, j * mapData.scale + mapData.y, mapData.scale*0.3, 0, Math.PI*2);
-          ctx.closePath();
-          ctx.fill();
-        } else if (mapData.entities[getXYStr(i, j)].type === "wall") {
+        if (mapData.entities[getXYStr(i, j)].type === "wall") {
           ctx.fillStyle = '#737373';
           ctx.beginPath();
           ctx.fillRect(i * mapData.scale + mapData.x - mapData.scale*0.5,  j * mapData.scale + mapData.y - mapData.scale*0.5, mapData.scale, mapData.scale)

@@ -12,10 +12,15 @@ body {
   font-size: 2rem;
   font-family: 'Mulish', sans-serif;
   /* font-family: 'Zilla Slab', serif; */
+  word-break: break-all;
 }
 
 ul {
   list-style: none;
+}
+
+textarea {
+  resize: none;
 }
 
 
@@ -246,34 +251,33 @@ ul {
 
 
 
-.create-form {
+.create-select-form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   margin-bottom: 2.4rem;
 }
 
-.create-form label {
+.create-select-form label {
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-weight: 700;
 }
 
-.create-form input {
+.create-select-form input, .create-select-form textarea {
   border: none;
   font-family: inherit;
   font-size: inherit;
   background-color: hsla(0, 0%, 90%, 0.10);
 
-  height: 3rem;
   width: 75%;
   margin-bottom: 1.2rem;
 
   touch-action: none;
 }
 
-.create-form input:focus {
+.create-select-form input:focus, .create-select-form textarea:focus {
   outline: none;
   background-color: hsla(0, 0%, 90%, 0.65)
 }
@@ -310,22 +314,35 @@ ul {
 /* ------------------------------------------------------------------ */
 /* MobileKeyboard */
 
-.mobile-keyboard {
+.mobile-keyboard-wrapper {
   position:fixed;
   top: 0;
   left: 0;
   height: 100svh;
   width: 100svw;
   z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: #121212;
   color: hsl(0, 0%, 90%);
 }
 
-.key-row {
+.mobile-keyboard {
+  margin-left: 1svw;
+}
+
+.keyboard-row {
   display: flex;
   justify-content: center;
-  gap: 0.4rem;
-  margin-bottom: 0.4rem;
+  gap: 2svw;
+  margin-bottom: 10px;
+}
+
+.keyboard-word {
+  font-size: 4rem;
+  width: 100svw;
+  overflow: scroll;
 }
 
 .mobile-keyboard-button {
@@ -338,7 +355,16 @@ ul {
   border: hsl(0, 0%, 90%) solid 1px;
   border-radius: 3px;
 
-  min-width: 20px;
+  width: 8svw;
+  height: 40px;
+}
+
+.mobile-keyboard-button-medium {
+  width: 20svw;
+}
+
+.mobile-keyboard-button-large {
+  width: 40svw;
 }
 
 

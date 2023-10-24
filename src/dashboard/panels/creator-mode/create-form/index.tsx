@@ -8,21 +8,23 @@ interface Props {
 }
 
 export default function CreateForm(props: Props) {
-  const [keyBoardOpen, setKeyboardOpen] = useState<boolean>(false);
+  const [keyboardOpen, setKeyboardOpen] = useState<boolean>(false);
+  const [keyboardField, setKeyboardField] = useState<string>("");
+  const [keyboardWord, setKeyboardWord] = useState<string>("");
+
+  const updateKeyboardField = (field: string, word: string) => {
+    const entityTemplate = props.entityTemplate;
+    props.entityTemplate[field] = word;
+    props.setEntityTemplate({ ...props.entityTemplate, entityTemplate });
+  };
 
   return (
-    <form className="create-form">
+    <form className="create-select-form">
       <div>
         <label>Type </label>
         {props.entityTemplate.type}
       </div>
       <div className="flex space-around">
-        <CreateTypeButton
-          type={"empty"}
-          title={`Create empty spaces with descriptions`}
-          entityTemplate={props.entityTemplate}
-          setEntityTemplate={props.setEntityTemplate}
-        />
         <CreateTypeButton
           type={"wall"}
           title={`Create walls`}
@@ -55,54 +57,46 @@ export default function CreateForm(props: Props) {
           props.entityTemplate.name = e.target.value;
           props.setEntityTemplate({ ...props.entityTemplate, entityTemplate });
         }}
-        onTouchStart={(e) => {
-          e.preventDefault();
-        }}
-        onTouchMove={(e) => {
-          e.preventDefault();
-        }}
         onTouchEnd={(e) => {
           e.preventDefault();
-        }}
-        onTouchCancel={(e) => {
-          e.preventDefault();
+          setKeyboardField("name");
+          setKeyboardWord(props.entityTemplate.name);
+          setKeyboardOpen(true);
         }}
       ></input>
       <div>
         <label htmlFor="name-attribute">Description </label>
         {props.entityTemplate.text}
       </div>
-      <input
+      <textarea
         name="text-attribute"
         id="text-attribute"
-        type="text"
+        rows={6}
         required
         title="Give a description"
         placeholder="Give a description"
         value={props.entityTemplate.text}
         onChange={(e) => {
           e.preventDefault();
-
           const entityTemplate = props.entityTemplate;
           props.entityTemplate.text = e.target.value;
           props.setEntityTemplate({ ...props.entityTemplate, entityTemplate });
         }}
-        onTouchStart={(e) => {
-          e.preventDefault();
-          setKeyboardOpen(true);
-        }}
-        onTouchMove={(e) => {
-          e.preventDefault();
-        }}
         onTouchEnd={(e) => {
+          setKeyboardField("text");
+          setKeyboardWord(props.entityTemplate.text);
+          setKeyboardOpen(true);
           e.preventDefault();
         }}
-        onTouchCancel={(e) => {
-          e.preventDefault();
-        }}
-      ></input>
-      {keyBoardOpen ? (
-        <MobileKeyboard setKeyBoardOpen={setKeyboardOpen} />
+      ></textarea>
+      {keyboardOpen ? (
+        <MobileKeyboard
+          setKeyboardOpen={setKeyboardOpen}
+          keyboardField={keyboardField}
+          word={keyboardWord}
+          setWord={setKeyboardWord}
+          updateKeyboardField={updateKeyboardField}
+        />
       ) : null}
     </form>
   );
