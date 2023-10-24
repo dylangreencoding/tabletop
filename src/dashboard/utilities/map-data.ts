@@ -11,7 +11,11 @@ export const rawMapData : any = {
   player4: "",
   width: 1000,
   height: 1000,
-  entities: {},
+  entities: {template: {
+    type: "wall", // // "wall" or "creature"
+    name: "wall", // // give it a name, default name is set to equal type when type is set ("wall" or "creature")
+    text: "", // // brief narrative color to be displayed when player occupies or investigates square
+}},
 
   // // fields generated on front end
   // // TO DO: strip and add these before saving
@@ -22,13 +26,4 @@ export const rawMapData : any = {
   tool: "select",
 }
 
-
-// // deep copied in canvas-event-handlers.ts --- need better method than JSON.parse(JSON.stringify())
-// // JSON.parse(JSON.stringify()) ok for objects containing strings, numbers, booleans, null, NaN (converted to null)
-// // undefined values are lost!! which could cause issues...
-export const emptyEntityTemplate : any = {
-    type: "wall", // // "wall" or "creature"
-    name: "", // // give it a name, default name is set to equal type when type is set ("wall" or "creature")
-    text: "", // // brief narrative color to be displayed when player occupies or investigates square
-}
 

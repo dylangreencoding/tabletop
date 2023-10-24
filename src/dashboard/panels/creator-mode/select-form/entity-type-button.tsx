@@ -1,14 +1,13 @@
-import { getXYStr } from "../../../utilities/get-selected";
-
 interface Props {
   type: string;
   title: string;
-  selected: any;
   mapData: any;
   setMapData: Function;
+  selected: any;
+  entityKey: string;
 }
 
-export default function SelectTypeButton(props: Props) {
+export default function EntityTypeButton(props: Props) {
   return (
     <button
       className={`entity-type-button ${
@@ -19,12 +18,8 @@ export default function SelectTypeButton(props: Props) {
       onClick={(e) => {
         e.preventDefault();
         const mapData = props.mapData;
-        props.mapData.entities[
-          getXYStr(props.mapData.selected.x, props.mapData.selected.y)
-        ].type = props.type;
-        props.mapData.entities[
-          getXYStr(props.mapData.selected.x, props.mapData.selected.y)
-        ].name = props.type;
+        props.mapData.entities[props.entityKey].type = props.type;
+        props.mapData.entities[props.entityKey].name = props.type;
 
         props.setMapData({ ...props.mapData, mapData });
       }}

@@ -12,7 +12,6 @@ body {
   font-size: 2rem;
   font-family: 'Mulish', sans-serif;
   /* font-family: 'Zilla Slab', serif; */
-  word-break: break-all;
 }
 
 ul {
@@ -251,21 +250,21 @@ textarea {
 
 
 
-.create-select-form {
+.select-form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   margin-bottom: 2.4rem;
 }
 
-.create-select-form label {
+.select-form label {
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-weight: 700;
 }
 
-.create-select-form input, .create-select-form textarea {
+.select-form input, .select-form textarea {
   border: none;
   font-family: inherit;
   font-size: inherit;
@@ -277,7 +276,7 @@ textarea {
   touch-action: none;
 }
 
-.create-select-form input:focus, .create-select-form textarea:focus {
+.select-form input:focus, .select-form textarea:focus {
   outline: none;
   background-color: hsla(0, 0%, 90%, 0.65)
 }
@@ -288,12 +287,10 @@ textarea {
   font-family: inherit;
   color: inherit;
   font-size: inherit;
-  height: 30px;
-  width: 25%;
-  margin-bottom: 1.2rem;
-  
-}
+  height: 40px;
+  width: 33%;
 
+}
 
 .entity-type-button:hover {
   cursor: pointer;
@@ -314,7 +311,7 @@ textarea {
 /* ------------------------------------------------------------------ */
 /* MobileKeyboard */
 
-.mobile-keyboard-wrapper {
+.keyboard-wrapper {
   position:fixed;
   top: 0;
   left: 0;
@@ -328,14 +325,14 @@ textarea {
   color: hsl(0, 0%, 90%);
 }
 
-.mobile-keyboard {
+.keyboard {
   margin-left: 1svw;
 }
 
 .keyboard-row {
   display: flex;
   justify-content: center;
-  gap: 2svw;
+  gap: 1svw;
   margin-bottom: 10px;
 }
 
@@ -343,9 +340,10 @@ textarea {
   font-size: 4rem;
   width: 100svw;
   overflow: scroll;
+  word-break: break-all;
 }
 
-.mobile-keyboard-button {
+.keyboard-button {
   border: none;
   background: none;
   font-family: inherit;
@@ -355,18 +353,26 @@ textarea {
   border: hsl(0, 0%, 90%) solid 1px;
   border-radius: 3px;
 
-  width: 8svw;
+  width: 9svw;
   height: 40px;
+  position: relative;
 }
 
-.mobile-keyboard-button-medium {
-  width: 20svw;
-}
-
-.mobile-keyboard-button-large {
+.keyboard-spacebar {
   width: 40svw;
 }
 
+.keyboard-button-active {
+  background-color: black;
+}
+
+.keyboard-button-helper {
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  top: -40px;
+  background-color: black;
+}
 
 
 
@@ -382,12 +388,20 @@ textarea {
   display: flex;
 }
 
+.column {
+  flex-direction: column;
+}
+
 .space-between {
   justify-content: space-between;
 }
 
 .space-around {
   justify-content: space-around;
+}
+
+.mb12 {
+  margin-bottom: 1.2rem;
 }
 
 

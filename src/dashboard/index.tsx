@@ -3,7 +3,7 @@ import { useState } from "react";
 import Canvas from "./canvas";
 import PanelOuter from "./panel-outer";
 
-import { rawMapData, emptyEntityTemplate } from "./utilities/map-data";
+import { rawMapData } from "./utilities/map-data";
 
 export function DashboardWrapper() {
   const fetchRawMapData = () => {
@@ -31,12 +31,6 @@ export function Dashboard(props: DashboardProps) {
   // // initialize mapData generates property fields not needed to be sent to database
   const [mapData, setMapData] = useState<any>(JSON.parse(props.selectedMap));
 
-  // // used to add entities to map
-  // // used by create tool and in canvas
-  // // it is its own state rather than existing in mapData
-  // // that way canvas useEffect is not called when it is modified
-  const [entityTemplate, setEntityTemplate] = useState<any>(emptyEntityTemplate);
-
   // // used to expand/collapse panel
   // // initialized here as canvas depends on it for resizing
   const [panelOut, setPanelOut] = useState<boolean>(true);
@@ -60,7 +54,6 @@ export function Dashboard(props: DashboardProps) {
         setMapData={setMapData}
         panelOut={panelOut}
         setPanelOut={setPanelOut}
-        entityTemplate={entityTemplate}
       />
       <PanelOuter
         mapData={mapData}
@@ -69,8 +62,6 @@ export function Dashboard(props: DashboardProps) {
         setPanelOut={setPanelOut}
         activePanel={activePanel}
         setActivePanel={setActivePanel}
-        entityTemplate={entityTemplate}
-        setEntityTemplate={setEntityTemplate}
       />
     </div>
   );

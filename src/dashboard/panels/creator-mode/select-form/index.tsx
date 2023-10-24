@@ -1,45 +1,60 @@
-import { getXYStr, getSelected } from "../../../utilities/get-selected";
-import SelectTypeButton from "./select-type-button";
+import { useState } from "react";
+import { getXYStr } from "../../../utilities/get-selected";
+import EntityTypeButton from "./entity-type-button";
+import MobileKeyboard from "../../../../mobile-keyboard";
 
 interface Props {
   mapData: any;
   setMapData: Function;
+
+  selected: any;
 }
 
 export default function SelectForm(props: Props) {
-  const selected = getSelected(
-    props.mapData.selected.x,
-    props.mapData.selected.y,
-    props.mapData
-  );
+  const entityKey =
+    props.mapData.tool === "select"
+      ? getXYStr(props.mapData.selected.x, props.mapData.selected.y)
+      : "template";
+
+  const [keyboardOpen, setKeyboardOpen] = useState<boolean>(false);
+  const [keyboardField, setKeyboardField] = useState<string>("");
+  const [keyboardWord, setKeyboardWord] = useState<string>("");
+
+  const updateKeyboardField = (field: string, word: string) => {
+    const mapData = props.mapData;
+    props.mapData.entities[entityKey][field] = word;
+    props.setMapData({ ...props.mapData, mapData });
+  };
 
   return (
     <div>
-      {selected.name !== "~" ? (
-        <form className="create-select-form">
+      {props.selected.name !== "~" ? (
+        <form className="select-form">
           {" "}
           <div>
             <label>Type </label>
-            {selected.type}
+            {props.selected.type}
           </div>
-          <div className="flex space-around">
-            <SelectTypeButton
+          <div className="flex column mb12">
+            <EntityTypeButton
               type={"wall"}
-              title={`Create walls`}
+              title={`Set type to "wall"`}
               mapData={props.mapData}
               setMapData={props.setMapData}
-              selected={selected}
+              selected={props.selected}
+              entityKey={entityKey}
             />
-            <SelectTypeButton
+            <EntityTypeButton
               type={"creature"}
-              title={`Create creatures`}
+              title={`Set type to "creature"`}
               mapData={props.mapData}
               setMapData={props.setMapData}
-              selected={selected}
+              selected={props.selected}
+              entityKey={entityKey}
             />
           </div>
           <div>
-            <label htmlFor="name-attribute">Name </label> {selected.name}
+            <label htmlFor="name-attribute">Name </label> {props.selected.name}
           </div>
           <input
             name="name-attribute"
@@ -48,22 +63,23 @@ export default function SelectForm(props: Props) {
             required
             title="Name this"
             placeholder={"Name this"}
-            value={selected.name}
+            value={props.selected.name}
             onChange={(e) => {
               e.preventDefault();
               const mapData = props.mapData;
-              props.mapData.entities[
-                getXYStr(props.mapData.selected.x, props.mapData.selected.y)
-              ].name = e.target.value;
+              props.mapData.entities[entityKey].name = e.target.value;
               props.setMapData({ ...props.mapData, mapData });
             }}
             onTouchEnd={(e) => {
               e.preventDefault();
+              setKeyboardField("name");
+              setKeyboardWord(props.selected.name);
+              setKeyboardOpen(true);
             }}
           ></input>
-          <div>
+          <div style={{ wordBreak: "break-all" }}>
             <label htmlFor="name-attribute">Description </label>
-            {selected.text}
+            {props.selected.text}
           </div>
           <textarea
             name="text-attribute"
@@ -72,24 +88,34 @@ export default function SelectForm(props: Props) {
             required
             title="Give a description"
             placeholder="Give a description"
-            value={selected.text}
+            value={props.selected.text}
             onChange={(e) => {
               e.preventDefault();
 
               const mapData = props.mapData;
-              props.mapData.entities[
-                getXYStr(props.mapData.selected.x, props.mapData.selected.y)
-              ].text = e.target.value;
+              props.mapData.entities[entityKey].text = e.target.value;
               props.setMapData({ ...props.mapData, mapData });
             }}
             onTouchEnd={(e) => {
               e.preventDefault();
+              setKeyboardField("text");
+              setKeyboardWord(props.selected.text);
+              setKeyboardOpen(true);
             }}
           ></textarea>
         </form>
       ) : (
         <span>Nothing here...</span>
       )}
+      {keyboardOpen ? (
+        <MobileKeyboard
+          setKeyboardOpen={setKeyboardOpen}
+          keyboardField={keyboardField}
+          word={keyboardWord}
+          setWord={setKeyboardWord}
+          updateKeyboardField={updateKeyboardField}
+        />
+      ) : null}
     </div>
   );
 }

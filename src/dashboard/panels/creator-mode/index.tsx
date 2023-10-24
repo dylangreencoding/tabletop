@@ -1,27 +1,49 @@
 import ToolBox from "./tool-box";
 import SelectForm from "./select-form";
-import CreateForm from "./create-form";
+
+import { getSelected } from "../../utilities/get-selected";
 
 interface Props {
   mapData: any;
   setMapData: Function;
-  entityTemplate: any;
-  setEntityTemplate: Function;
 }
 
 export default function CreatorMode(props: Props) {
+  const selected = getSelected(
+    props.mapData.selected.x,
+    props.mapData.selected.y,
+    props.mapData
+  );
+
   const displayForm = () => {
     switch (props.mapData.tool) {
       case "select":
         return (
-          <SelectForm mapData={props.mapData} setMapData={props.setMapData} />
+          <div>
+            <p className="mb12">
+              Click or tap the map to select a piece. Use this form to modify
+              the currently selected piece.
+            </p>
+            <SelectForm
+              mapData={props.mapData}
+              setMapData={props.setMapData}
+              selected={selected}
+            />
+          </div>
         );
       case "create":
         return (
-          <CreateForm
-            entityTemplate={props.entityTemplate}
-            setEntityTemplate={props.setEntityTemplate}
-          />
+          <div>
+            <p className="mb12">
+              Click or tap the map to create a piece. Use this form to specify
+              what is created.
+            </p>
+            <SelectForm
+              mapData={props.mapData}
+              setMapData={props.setMapData}
+              selected={props.mapData.entities.template}
+            />
+          </div>
         );
       case "delete":
         return "Click or tap the board to remove a piece";

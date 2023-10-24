@@ -11,6 +11,7 @@ export function getMatrix (mapData: any) {
 
   // // add entities
   for (const key of Object.keys(mapData.entities)) {
+    if (key === "template") continue;
     mapMatrix[mapData.entities[key].x][mapData.entities[key].y] = 1;
   }
 
