@@ -129,38 +129,42 @@ export default function Canvas(props: Props) {
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
-      switch (e.key) {
-        case "`":
-          // // temporary, for development
-          props.setMapData({ ...props.mapData, mapData });
-          console.log(props.mapData);
-          sessionStorage.setItem("tabletopUI", JSON.stringify(props.mapData));
-          break;
-        case "~":
-          // // temporary, for development
-          sessionStorage.removeItem("tabletopUI");
-          location.reload();
+      if (props.panelOut === false) {
+        switch (e.key) {
+          case "`":
+            // // temporary, for development
+            props.setMapData({ ...props.mapData, mapData });
+            console.log(props.mapData);
+            sessionStorage.setItem("tabletopUI", JSON.stringify(props.mapData));
+            break;
+          case "~":
+            // // temporary, for development
+            sessionStorage.removeItem("tabletopUI");
+            location.reload();
+        }
       }
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      switch (e.key) {
-        case "ArrowUp":
-          move(props.mapData, matrix, 0, -1, e.shiftKey);
-          props.setMapData({ ...props.mapData, mapData });
-          break;
-        case "ArrowRight":
-          move(props.mapData, matrix, 1, 0, e.shiftKey);
-          props.setMapData({ ...props.mapData, mapData });
-          break;
-        case "ArrowDown":
-          move(props.mapData, matrix, 0, 1, e.shiftKey);
-          props.setMapData({ ...props.mapData, mapData });
-          break;
-        case "ArrowLeft":
-          move(props.mapData, matrix, -1, 0, e.shiftKey);
-          props.setMapData({ ...props.mapData, mapData });
-          break;
+      if (props.panelOut === false) {
+        switch (e.key) {
+          case "ArrowUp":
+            move(props.mapData, matrix, 0, -1, e.shiftKey);
+            props.setMapData({ ...props.mapData, mapData });
+            break;
+          case "ArrowRight":
+            move(props.mapData, matrix, 1, 0, e.shiftKey);
+            props.setMapData({ ...props.mapData, mapData });
+            break;
+          case "ArrowDown":
+            move(props.mapData, matrix, 0, 1, e.shiftKey);
+            props.setMapData({ ...props.mapData, mapData });
+            break;
+          case "ArrowLeft":
+            move(props.mapData, matrix, -1, 0, e.shiftKey);
+            props.setMapData({ ...props.mapData, mapData });
+            break;
+        }
       }
     };
 

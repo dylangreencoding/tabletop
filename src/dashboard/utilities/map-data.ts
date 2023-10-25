@@ -12,9 +12,8 @@ export const rawMapData : any = {
   width: 1000,
   height: 1000,
   entities: {template: {
-    type: "wall", // // "wall" or "creature"
-    name: "wall", // // give it a name, default name is set to equal type when type is set ("wall" or "creature")
-    text: "", // // brief narrative color to be displayed when player occupies or investigates square
+    type: "wall", // // "wall" or "zombie"
+    name: "wall", // // give it a name, default name is set to equal type when type is set ("wall" or "zombie")
 }},
 
   // // fields generated on front end

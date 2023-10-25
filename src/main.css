@@ -30,7 +30,7 @@ textarea {
 /* Dashboard */
 
 .dashboard {
-  color: hsl(0, 0%, 90%);
+  color: hsl(0, 0%, 80%);
   background-color: #121212;
 
   /* svh gets best results on mobile */
@@ -39,6 +39,8 @@ textarea {
   overflow: hidden;
 
   display: grid;
+
+  font-weight: 800;
 }
 
 /* dynamically applied to expand/collapse panel */
@@ -96,7 +98,7 @@ textarea {
 /* max height property applied dynamically using inline css on PanelInner */
 .panel-inner {
   overflow-y: scroll;
-  /* border-left: dotted 1px hsl(0, 0%, 50%); */
+  border-left: dotted 1px hsl(0, 0%, 50%);
   padding: 0.6rem 0.6rem 0 0.6rem;
 }
 
@@ -231,12 +233,12 @@ textarea {
 }
 
 .tool-box-button-active {
-  background-color: #2e0000;
+  background-color: black;
   font-weight: 700;
 }
 
 .tool-box-button-active:hover {
-  background-color: #2e0000;
+  background-color: black;
 }
 
 
@@ -257,18 +259,12 @@ textarea {
   margin-bottom: 2.4rem;
 }
 
-.select-form label {
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-weight: 700;
-}
 
-.select-form input, .select-form textarea {
+.select-form input {
   border: none;
   font-family: inherit;
-  font-size: inherit;
-  background-color: hsla(0, 0%, 90%, 0.10);
+  font-size: 3rem;
+  background-color: hsla(0, 0%, 90%, 0.40);
 
   width: 75%;
   margin-bottom: 1.2rem;
@@ -276,7 +272,7 @@ textarea {
   touch-action: none;
 }
 
-.select-form input:focus, .select-form textarea:focus {
+.select-form input:focus {
   outline: none;
   background-color: hsla(0, 0%, 90%, 0.65)
 }
@@ -298,12 +294,12 @@ textarea {
 }
 
 .entity-type-button-active {
-  background-color: #2e0000;
-  font-weight: 700;
+  background-color: black;
+  font-weight: 800;
 }
 
 .entity-type-button-active:hover {
-  background-color: #2e0000;
+  background-color: black;
 }
 
 /* ------------------------------------------------------------------ */
@@ -326,14 +322,15 @@ textarea {
 }
 
 .keyboard {
-  margin-left: 1svw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .keyboard-row {
   display: flex;
   justify-content: center;
   gap: 1svw;
-  margin-bottom: 10px;
 }
 
 .keyboard-word {
@@ -384,25 +381,7 @@ textarea {
 /* ------------------------------------------------------------------ */
 /* atomic styles */
 
-.flex {
-  display: flex;
-}
 
-.column {
-  flex-direction: column;
-}
-
-.space-between {
-  justify-content: space-between;
-}
-
-.space-around {
-  justify-content: space-around;
-}
-
-.mb12 {
-  margin-bottom: 1.2rem;
-}
 
 
 
@@ -445,7 +424,7 @@ textarea {
 
   .panel-inner {
   border-left: none;
-  /* border-top: dotted 1px hsl(0, 0%, 50%); */
+  border-top: dotted 1px hsl(0, 0%, 50%);
   }
 
   /* ------------------------------------------------------- */ 

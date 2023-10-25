@@ -32,9 +32,8 @@ export function move (mapData: any, matrix: Array<Array<number>>, x: number, y: 
   const nextSquare = getSelected(mapData.selected.x + x, mapData.selected.y + y, mapData);
 
 
-  if (selected.name !== "" && selected.name !== "~" && nextSquare.name === "~" && shiftKey === false) {
+  if (selected.type !== "" && selected.type !== "~" && nextSquare.type === "~" && shiftKey === false) {
     
-    console.log(nextSquare.name);
     // // move piece
     mapData.entities[getXYStr(selected.x + x, selected.y + y)] = JSON.parse(JSON.stringify(selected));
     mapData.entities[getXYStr(selected.x + x, selected.y + y)].x += x;
@@ -44,10 +43,10 @@ export function move (mapData: any, matrix: Array<Array<number>>, x: number, y: 
     delete mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)];
     mapData.selected.x = selected.x + x;
     mapData.selected.y = selected.y + y;
-  } else if (nextSquare.name === "~" && shiftKey === false) {
+  } else if (nextSquare.type === "~" && shiftKey === false) {
     mapData.selected.x = selected.x + x;
     mapData.selected.y = selected.y + y;
-  } else if (nextSquare.name !== "" && shiftKey === true) {
+  } else if (nextSquare.type !== "" && shiftKey === true) {
     mapData.selected.x = selected.x + x;
     mapData.selected.y = selected.y + y;
   }

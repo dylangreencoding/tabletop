@@ -6,14 +6,14 @@ interface Props {
   setKeyboardOpen: Function;
   keyboardField: string;
   updateKeyboardField: Function;
-  word: string;
-  setWord: Function;
+  keyboardWord: string;
+  setKeyboardWord: Function;
 }
 
 export default function MobileKeyboard(props: Props) {
   return (
     <div className="keyboard-wrapper">
-      <div className="keyboard-word">{props.word}</div>
+      <div className="keyboard-word">{props.keyboardWord}_</div>
       <div className="keyboard">
         <ul className="keyboard-row keyboard-row-1">
           {keyRow1.map((letter: string) => {
@@ -21,8 +21,8 @@ export default function MobileKeyboard(props: Props) {
               <MobileKeyboardButton
                 key={uuidv4()}
                 letter={letter}
-                word={props.word}
-                setWord={props.setWord}
+                word={props.keyboardWord}
+                setWord={props.setKeyboardWord}
               />
             );
           })}
@@ -33,8 +33,8 @@ export default function MobileKeyboard(props: Props) {
               <MobileKeyboardButton
                 key={uuidv4()}
                 letter={letter}
-                word={props.word}
-                setWord={props.setWord}
+                word={props.keyboardWord}
+                setWord={props.setKeyboardWord}
               />
             );
           })}
@@ -45,8 +45,8 @@ export default function MobileKeyboard(props: Props) {
               <MobileKeyboardButton
                 key={uuidv4()}
                 letter={letter}
-                word={props.word}
-                setWord={props.setWord}
+                word={props.keyboardWord}
+                setWord={props.setKeyboardWord}
               />
             );
           })}
@@ -57,15 +57,15 @@ export default function MobileKeyboard(props: Props) {
             className="keyboard-button keyboard-button-medium"
             onClick={(e) => {
               e.preventDefault;
-              props.setWord(props.word.slice(0, -1));
+              props.setKeyboardWord(props.keyboardWord.slice(0, -1));
             }}
           >
             &lArr;
           </button>
           <MobileKeyboardButton
             letter={" "}
-            word={props.word}
-            setWord={props.setWord}
+            word={props.keyboardWord}
+            setWord={props.setKeyboardWord}
           />
 
           <button
@@ -73,7 +73,10 @@ export default function MobileKeyboard(props: Props) {
             className="keyboard-button keyboard-button-medium"
             onClick={(e) => {
               e.preventDefault;
-              props.updateKeyboardField(props.keyboardField, props.word);
+              props.updateKeyboardField(
+                props.keyboardField,
+                props.keyboardWord.trim()
+              );
               props.setKeyboardOpen(false);
             }}
           >

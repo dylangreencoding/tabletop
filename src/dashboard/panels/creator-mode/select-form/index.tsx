@@ -28,91 +28,71 @@ export default function SelectForm(props: Props) {
 
   return (
     <div>
-      {props.selected.name !== "~" ? (
+      {props.selected.type !== "~" ? (
         <form className="select-form">
-          {" "}
-          <div>
-            <label>Type </label>
-            {props.selected.type}
-          </div>
-          <div className="flex column mb12">
-            <EntityTypeButton
-              type={"wall"}
-              title={`Set type to "wall"`}
-              mapData={props.mapData}
-              setMapData={props.setMapData}
-              selected={props.selected}
-              entityKey={entityKey}
-            />
-            <EntityTypeButton
-              type={"creature"}
-              title={`Set type to "creature"`}
-              mapData={props.mapData}
-              setMapData={props.setMapData}
-              selected={props.selected}
-              entityKey={entityKey}
-            />
-          </div>
-          <div>
-            <label htmlFor="name-attribute">Name </label> {props.selected.name}
-          </div>
-          <input
-            name="name-attribute"
-            id="name-attribute"
-            type="text"
-            required
-            title="Name this"
-            placeholder={"Name this"}
-            value={props.selected.name}
-            onChange={(e) => {
-              e.preventDefault();
-              const mapData = props.mapData;
-              props.mapData.entities[entityKey].name = e.target.value;
-              props.setMapData({ ...props.mapData, mapData });
-            }}
-            onTouchEnd={(e) => {
-              e.preventDefault();
-              setKeyboardField("name");
-              setKeyboardWord(props.selected.name);
-              setKeyboardOpen(true);
-            }}
-          ></input>
-          <div style={{ wordBreak: "break-all" }}>
-            <label htmlFor="name-attribute">Description </label>
-            {props.selected.text}
-          </div>
-          <textarea
-            name="text-attribute"
-            id="text-attribute"
-            rows={6}
-            required
-            title="Give a description"
-            placeholder="Give a description"
-            value={props.selected.text}
-            onChange={(e) => {
-              e.preventDefault();
-
-              const mapData = props.mapData;
-              props.mapData.entities[entityKey].text = e.target.value;
-              props.setMapData({ ...props.mapData, mapData });
-            }}
-            onTouchEnd={(e) => {
-              e.preventDefault();
-              setKeyboardField("text");
-              setKeyboardWord(props.selected.text);
-              setKeyboardOpen(true);
-            }}
-          ></textarea>
+          {props.mapData.tool === "create" ? (
+            <div style={{ display: "flex", gap: "1.2rem" }}>
+              <EntityTypeButton
+                type={"wall"}
+                title={`wall`}
+                mapData={props.mapData}
+                setMapData={props.setMapData}
+                selected={props.selected}
+                entityKey={entityKey}
+              />
+              <EntityTypeButton
+                type={"zombie"}
+                title={`zombie`}
+                mapData={props.mapData}
+                setMapData={props.setMapData}
+                selected={props.selected}
+                entityKey={entityKey}
+              />
+            </div>
+          ) : (
+            <div>
+              <input
+                type="text"
+                maxLength={20}
+                title="20 character maximum"
+                placeholder={"Name this"}
+                value={props.selected.name}
+                onChange={(e) => {
+                  e.preventDefault();
+                  const mapData = props.mapData;
+                  props.mapData.entities[entityKey].name = e.target.value;
+                  props.setMapData({ ...props.mapData, mapData });
+                }}
+                onTouchEnd={(e) => {
+                  e.preventDefault();
+                  setKeyboardField("name");
+                  setKeyboardWord(props.selected.name);
+                  setKeyboardOpen(true);
+                }}
+              ></input>
+            </div>
+          )}
         </form>
       ) : (
-        <span>Nothing here...</span>
+        <p
+          style={{
+            fontSize: "1.2rem",
+            textTransform: "uppercase",
+            marginBottom: "2.4rem",
+            letterSpacing: "2px",
+            fontWeight: "800",
+            color: "hsl(0, 0%, 40%)",
+          }}
+        >
+          Nothing is selected. Try creating a piece.
+        </p>
       )}
       {keyboardOpen ? (
         <MobileKeyboard
           setKeyboardOpen={setKeyboardOpen}
           keyboardField={keyboardField}
-          word={keyboardWord}
-          setWord={setKeyboardWord}
+          keyboardWord={keyboardWord}
+          setKeyboardWord={setKeyboardWord}
           updateKeyboardField={updateKeyboardField}
         />
       ) : null}

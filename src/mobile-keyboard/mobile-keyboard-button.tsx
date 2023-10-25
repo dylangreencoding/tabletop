@@ -22,7 +22,14 @@ export default function MobileKeyboardButton(props: Props) {
         onTouchEnd={(e: any) => {
           e.preventDefault();
           setActive(false);
-          props.setWord(props.word + props.letter);
+          if (
+            props.word[props.word.length - 1] === " " &&
+            props.letter === " "
+          ) {
+            props.setWord(props.word);
+          } else {
+            props.setWord(props.word + props.letter);
+          }
         }}
         onTouchCancel={(e: any) => {
           e.preventDefault();

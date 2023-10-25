@@ -80,7 +80,7 @@ export function draw(ctx: any, canvasWidth: number, canvasHeight: number, mapDat
           ctx.beginPath();
           ctx.fillRect(i * mapData.scale + mapData.x - mapData.scale*0.5,  j * mapData.scale + mapData.y - mapData.scale*0.5, mapData.scale, mapData.scale)
           ctx.closePath();
-        } else if (mapData.entities[getXYStr(i, j)].type === "creature") {
+        } else if (mapData.entities[getXYStr(i, j)].type === "zombie") {
           ctx.fillStyle = 'darkgreen';
           ctx.beginPath();
           ctx.arc(i * mapData.scale + mapData.x, j * mapData.scale + mapData.y, mapData.scale*0.3, 0, Math.PI*2);

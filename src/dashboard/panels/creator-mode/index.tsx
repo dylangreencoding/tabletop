@@ -20,9 +20,17 @@ export default function CreatorMode(props: Props) {
       case "select":
         return (
           <div>
-            <p className="mb12">
-              Click or tap the map to select a piece. Use this form to modify
-              the currently selected piece.
+            <p
+              style={{
+                fontSize: "1.2rem",
+                textTransform: "uppercase",
+                marginBottom: "2.4rem",
+                letterSpacing: "2px",
+                fontWeight: "800",
+                color: "hsl(0, 0%, 40%)",
+              }}
+            >
+              Modify the selected piece:
             </p>
             <SelectForm
               mapData={props.mapData}
@@ -34,9 +42,17 @@ export default function CreatorMode(props: Props) {
       case "create":
         return (
           <div>
-            <p className="mb12">
-              Click or tap the map to create a piece. Use this form to specify
-              what is created.
+            <p
+              style={{
+                fontSize: "1.2rem",
+                textTransform: "uppercase",
+                marginBottom: "2.4rem",
+                letterSpacing: "2px",
+                fontWeight: "800",
+                color: "hsl(0, 0%, 40%)",
+              }}
+            >
+              Click or tap the map to create this type of piece:
             </p>
             <SelectForm
               mapData={props.mapData}
@@ -46,30 +62,25 @@ export default function CreatorMode(props: Props) {
           </div>
         );
       case "delete":
-        return "Click or tap the board to remove a piece";
+        return (
+          <p
+            style={{
+              fontSize: "1.2rem",
+              textTransform: "uppercase",
+              marginBottom: "2.4rem",
+              letterSpacing: "2px",
+              fontWeight: "800",
+              color: "hsl(0, 0%, 40%)",
+            }}
+          >
+            Click or tap the map to delete a piece.
+          </p>
+        );
     }
   };
 
   return (
     <div>
-      <div
-        style={{
-          fontSize: "1.2rem",
-          marginBottom: "0.6rem",
-          letterSpacing: "2px",
-          textAlign: "center",
-          color: "hsl(0, 0%, 25%)",
-        }}
-      >
-        <strong
-          style={{
-            fontWeight: "800",
-          }}
-        >
-          CREATOR MODE
-        </strong>{" "}
-        &#10042; TABLETOP
-      </div>
       <ToolBox mapData={props.mapData} setMapData={props.setMapData} />
       {displayForm()}
     </div>
