@@ -36,9 +36,9 @@ export function Dashboard(props: DashboardProps) {
   const [panelOut, setPanelOut] = useState<boolean>(true);
 
   // // used to determine which panel is currently displayed
-  // // "Home", "Creator Mode", or "Player Mode"
-  // // initialized here as canvas functionality varies depending on Creator/Player Mode
-  const [activePanel, setActivePanel] = useState<string>("Home");
+  // // "home", "build", or "play"
+  // // initialized here as canvas functionality varies depending on build / play modes
+  const [activePanel, setActivePanel] = useState<string>("home");
 
   // // returns a css grid element with two columns/rows depending on orientation
   // // contains Canvas and PanelOuter (PanelOuter contains PanelInner and Tabs )
@@ -54,6 +54,7 @@ export function Dashboard(props: DashboardProps) {
         setMapData={setMapData}
         panelOut={panelOut}
         setPanelOut={setPanelOut}
+        activePanel={activePanel}
       />
       <PanelOuter
         mapData={mapData}

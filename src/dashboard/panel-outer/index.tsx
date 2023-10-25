@@ -25,6 +25,8 @@ export default function PanelOuter(props: Props) {
         activePanel={props.activePanel}
       />
       <Tabs
+        mapData={props.mapData}
+        setMapData={props.setMapData}
         panelOut={props.panelOut}
         setPanelOut={props.setPanelOut}
         activePanel={props.activePanel}

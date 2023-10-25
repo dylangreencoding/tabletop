@@ -4,6 +4,7 @@ interface Props {
   word: string;
   setWord: Function;
   letter: string;
+  backspace: boolean;
 }
 
 export default function MobileKeyboardButton(props: Props) {
@@ -22,9 +23,12 @@ export default function MobileKeyboardButton(props: Props) {
         onTouchEnd={(e: any) => {
           e.preventDefault();
           setActive(false);
-          if (
-            props.word[props.word.length - 1] === " " &&
-            props.letter === " "
+          if (props.backspace) {
+            props.setWord(props.word.slice(0, -1));
+          } else if (
+            (props.word[props.word.length - 1] === " " &&
+              props.letter === " ") ||
+            props.word.length >= 20
           ) {
             props.setWord(props.word);
           } else {

@@ -5,13 +5,15 @@ import { getXYStr, getSelected } from "./get-selected";
 // // they exist to clean up code in event handlers
 
 export function selectLocation (mapData: any, mouse: any, matrix: Array<Array<number>>) {
-  mapData.selected.x = (mouse.position.x - mapData.x) / mapData.scale;
-  mapData.selected.y = (mouse.position.y - mapData.y) / mapData.scale;
   
   switch(mapData.tool) {
     case "select":
+      mapData.selected.x = (mouse.position.x - mapData.x) / mapData.scale;
+      mapData.selected.y = (mouse.position.y - mapData.y) / mapData.scale;
       break;
     case "create":
+      mapData.selected.x = (mouse.position.x - mapData.x) / mapData.scale;
+      mapData.selected.y = (mouse.position.y - mapData.y) / mapData.scale;
       // // TODO: replace JSON.parse(JSON.stringify()) with cloning method (lodash?)
       const entity = JSON.parse(JSON.stringify(mapData.entities.template))
       entity.x = mapData.selected.x;
@@ -21,13 +23,15 @@ export function selectLocation (mapData: any, mouse: any, matrix: Array<Array<nu
       console.log('created here:', matrix[mapData.selected.x][mapData.selected.y], mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)])
       break;
     case "delete":
+      mapData.selected.x = (mouse.position.x - mapData.x) / mapData.scale;
+      mapData.selected.y = (mouse.position.y - mapData.y) / mapData.scale;
       delete mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)];
       delete matrix[mapData.selected.x][mapData.selected.y];
       break;
   }
 }
 
-export function move (mapData: any, matrix: Array<Array<number>>, x: number, y: number, shiftKey: boolean) {
+export function moveWithArrow (mapData: any, matrix: Array<Array<number>>, x: number, y: number, shiftKey: boolean) {
   const selected = getSelected(mapData.selected.x, mapData.selected.y, mapData);
   const nextSquare = getSelected(mapData.selected.x + x, mapData.selected.y + y, mapData);
 

@@ -5,22 +5,33 @@ interface Props {
   setPanelOut: Function;
   activePanel: string;
   setActivePanel: Function;
+  mapData: any;
+  setMapData: Function;
 }
 
 export default function Tabs(props: Props) {
   const handleHomeButton = (e: any) => {
     e.preventDefault();
+
     if (props.panelOut) {
-      if (props.activePanel === "Home") {
+      if (props.activePanel === "home") {
         props.setPanelOut(false);
       } else {
-        props.setActivePanel("Home");
+        // // reset map tool when navigating to tab from another tab
+        const mapData = props.mapData;
+        props.mapData.tool = "select";
+        props.setMapData({ ...props.mapData, mapData });
+        props.setActivePanel("home");
       }
     } else {
-      if (props.activePanel === "Home") {
+      if (props.activePanel === "home") {
         props.setPanelOut(true);
       } else {
-        props.setActivePanel("Home");
+        // // reset map tool when navigating to tab from another tab
+        const mapData = props.mapData;
+        props.mapData.tool = "select";
+        props.setMapData({ ...props.mapData, mapData });
+        props.setActivePanel("home");
         props.setPanelOut(true);
       }
     }
@@ -29,16 +40,24 @@ export default function Tabs(props: Props) {
   const handleCreateButton = (e: any) => {
     e.preventDefault();
     if (props.panelOut) {
-      if (props.activePanel === "Creator Mode") {
+      if (props.activePanel === "build") {
         props.setPanelOut(false);
       } else {
-        props.setActivePanel("Creator Mode");
+        // // reset map tool when navigating to tab from another tab
+        const mapData = props.mapData;
+        props.mapData.tool = "create";
+        props.setMapData({ ...props.mapData, mapData });
+        props.setActivePanel("build");
       }
     } else {
-      if (props.activePanel === "Creator Mode") {
+      if (props.activePanel === "build") {
         props.setPanelOut(true);
       } else {
-        props.setActivePanel("Creator Mode");
+        // // reset map tool when navigating to tab from another tab
+        const mapData = props.mapData;
+        props.mapData.tool = "create";
+        props.setMapData({ ...props.mapData, mapData });
+        props.setActivePanel("build");
         props.setPanelOut(true);
       }
     }
@@ -46,17 +65,26 @@ export default function Tabs(props: Props) {
 
   const handlePlayButton = (e: any) => {
     e.preventDefault();
+
     if (props.panelOut) {
-      if (props.activePanel === "Player Mode") {
+      if (props.activePanel === "play") {
         props.setPanelOut(false);
       } else {
-        props.setActivePanel("Player Mode");
+        // // reset map tool when navigating to tab from another tab
+        const mapData = props.mapData;
+        props.mapData.tool = "play";
+        props.setMapData({ ...props.mapData, mapData });
+        props.setActivePanel("play");
       }
     } else {
-      if (props.activePanel === "Player Mode") {
+      if (props.activePanel === "play") {
         props.setPanelOut(true);
       } else {
-        props.setActivePanel("Player Mode");
+        // // reset map tool when navigating to tab from another tab
+        const mapData = props.mapData;
+        props.mapData.tool = "play";
+        props.setMapData({ ...props.mapData, mapData });
+        props.setActivePanel("play");
         props.setPanelOut(true);
       }
     }
@@ -69,7 +97,7 @@ export default function Tabs(props: Props) {
         activePanel={props.activePanel}
         handleClick={handleHomeButton}
         className="tab-button-home"
-        title="Home"
+        title="home"
         icon={
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +120,7 @@ export default function Tabs(props: Props) {
         activePanel={props.activePanel}
         handleClick={handleCreateButton}
         className="tab-button-create"
-        title="Creator Mode"
+        title="build"
         icon={
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +139,7 @@ export default function Tabs(props: Props) {
         activePanel={props.activePanel}
         handleClick={handlePlayButton}
         className="tab-button-play"
-        title="Player Mode"
+        title="play"
         icon={
           <svg
             xmlns="http://www.w3.org/2000/svg"

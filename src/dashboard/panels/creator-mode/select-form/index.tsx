@@ -31,7 +31,7 @@ export default function SelectForm(props: Props) {
       {props.selected.type !== "~" ? (
         <form className="select-form">
           {props.mapData.tool === "create" ? (
-            <div style={{ display: "flex", gap: "1.2rem" }}>
+            <div style={{ display: "flex", gap: "0.3rem" }}>
               <EntityTypeButton
                 type={"wall"}
                 title={`wall`}
@@ -51,6 +51,19 @@ export default function SelectForm(props: Props) {
             </div>
           ) : (
             <div>
+              <p
+                style={{
+                  fontSize: "1.2rem",
+                  textTransform: "uppercase",
+                  marginBottom: "2.4rem",
+                  letterSpacing: "2px",
+                  fontWeight: "800",
+                  color: "hsl(0, 0%, 40%)",
+                }}
+              >
+                Name the {props.selected.type} at {props.selected.x},{" "}
+                {props.selected.y}
+              </p>
               <input
                 type="text"
                 maxLength={20}
@@ -84,7 +97,7 @@ export default function SelectForm(props: Props) {
             color: "hsl(0, 0%, 40%)",
           }}
         >
-          Nothing is selected. Try creating a piece.
+          Empty square at {props.selected.x}, {props.selected.y}
         </p>
       )}
       {keyboardOpen ? (

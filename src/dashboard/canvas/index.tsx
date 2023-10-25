@@ -16,7 +16,7 @@ import { getMatrix } from "../utilities/get-matrix";
 import {
   selectLocation,
   keepMapInView,
-  move,
+  moveWithArrow,
 } from "../utilities/canvas-event-logic";
 
 interface Props {
@@ -26,6 +26,8 @@ interface Props {
 
   setPanelOut: Function;
   panelOut: boolean;
+
+  activePanel: string;
 }
 
 export default function Canvas(props: Props) {
@@ -80,7 +82,15 @@ export default function Canvas(props: Props) {
     console.log(props.mapData);
 
     // // initital draw
-    draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
+    draw(
+      ctx,
+      canvas.width,
+      canvas.height,
+      props.mapData,
+      mouse,
+      matrix,
+      props.activePanel
+    );
 
     /// // ************* \\ \\\
     // // EVENT HANDLERS \\ \\
@@ -101,7 +111,15 @@ export default function Canvas(props: Props) {
         keepMapInView(props.mapData, canvas);
       }
 
-      draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
+      draw(
+        ctx,
+        canvas.width,
+        canvas.height,
+        props.mapData,
+        mouse,
+        matrix,
+        props.activePanel
+      );
     };
 
     const handleMouseUp = (_e: MouseEvent) => {
@@ -125,7 +143,15 @@ export default function Canvas(props: Props) {
     const handleMouseLeave = (_e: MouseEvent) => {
       mouse.position.x = NaN;
       mouse.position.y = NaN;
-      draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
+      draw(
+        ctx,
+        canvas.width,
+        canvas.height,
+        props.mapData,
+        mouse,
+        matrix,
+        props.activePanel
+      );
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
@@ -149,19 +175,19 @@ export default function Canvas(props: Props) {
       if (props.panelOut === false) {
         switch (e.key) {
           case "ArrowUp":
-            move(props.mapData, matrix, 0, -1, e.shiftKey);
+            moveWithArrow(props.mapData, matrix, 0, -1, e.shiftKey);
             props.setMapData({ ...props.mapData, mapData });
             break;
           case "ArrowRight":
-            move(props.mapData, matrix, 1, 0, e.shiftKey);
+            moveWithArrow(props.mapData, matrix, 1, 0, e.shiftKey);
             props.setMapData({ ...props.mapData, mapData });
             break;
           case "ArrowDown":
-            move(props.mapData, matrix, 0, 1, e.shiftKey);
+            moveWithArrow(props.mapData, matrix, 0, 1, e.shiftKey);
             props.setMapData({ ...props.mapData, mapData });
             break;
           case "ArrowLeft":
-            move(props.mapData, matrix, -1, 0, e.shiftKey);
+            moveWithArrow(props.mapData, matrix, -1, 0, e.shiftKey);
             props.setMapData({ ...props.mapData, mapData });
             break;
         }
@@ -190,7 +216,15 @@ export default function Canvas(props: Props) {
       // // assure typescript canvas width is not undefined
       canvas.width = getCanvasWidth() || window.innerWidth;
       canvas.height = getCanvasHeight() || window.innerHeight;
-      draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
+      draw(
+        ctx,
+        canvas.width,
+        canvas.height,
+        props.mapData,
+        mouse,
+        matrix,
+        props.activePanel
+      );
     };
 
     const handleTouchStart = (e: TouchEvent) => {
@@ -215,7 +249,15 @@ export default function Canvas(props: Props) {
       props.mapData.y += touch.thisTouch.y - touch.lastTouch.y;
       touch.didMoveMap = true;
       keepMapInView(props.mapData, canvas);
-      draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
+      draw(
+        ctx,
+        canvas.width,
+        canvas.height,
+        props.mapData,
+        mouse,
+        matrix,
+        props.activePanel
+      );
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
@@ -268,7 +310,7 @@ export default function Canvas(props: Props) {
       canvas.removeEventListener("touchend", handleTouchEnd);
       canvas.removeEventListener("touchcancel", handleTouchCancel);
     };
-  }, [props.mapData, props.panelOut]);
+  }, [props.mapData, props.panelOut, props.activePanel]);
 
   return (
     <canvas

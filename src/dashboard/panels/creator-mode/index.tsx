@@ -30,7 +30,7 @@ export default function CreatorMode(props: Props) {
                 color: "hsl(0, 0%, 40%)",
               }}
             >
-              Modify the selected piece:
+              Click or tap the map to select a piece.
             </p>
             <SelectForm
               mapData={props.mapData}
@@ -52,7 +52,8 @@ export default function CreatorMode(props: Props) {
                 color: "hsl(0, 0%, 40%)",
               }}
             >
-              Click or tap the map to create this type of piece:
+              Click or tap the map to create a{" "}
+              {props.mapData.entities.template.type}.
             </p>
             <SelectForm
               mapData={props.mapData}

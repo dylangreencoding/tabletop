@@ -13,7 +13,9 @@ interface Props {
 export default function MobileKeyboard(props: Props) {
   return (
     <div className="keyboard-wrapper">
-      <div className="keyboard-word">{props.keyboardWord}_</div>
+      <div className="keyboard-word">
+        <div>{props.keyboardWord}_</div>
+      </div>
       <div className="keyboard">
         <ul className="keyboard-row keyboard-row-1">
           {keyRow1.map((letter: string) => {
@@ -23,6 +25,7 @@ export default function MobileKeyboard(props: Props) {
                 letter={letter}
                 word={props.keyboardWord}
                 setWord={props.setKeyboardWord}
+                backspace={false}
               />
             );
           })}
@@ -35,6 +38,7 @@ export default function MobileKeyboard(props: Props) {
                 letter={letter}
                 word={props.keyboardWord}
                 setWord={props.setKeyboardWord}
+                backspace={false}
               />
             );
           })}
@@ -47,30 +51,29 @@ export default function MobileKeyboard(props: Props) {
                 letter={letter}
                 word={props.keyboardWord}
                 setWord={props.setKeyboardWord}
+                backspace={false}
               />
             );
           })}
         </ul>
         <ul className="keyboard-row keyboard-row-4">
-          <button
-            type="button"
-            className="keyboard-button keyboard-button-medium"
-            onClick={(e) => {
-              e.preventDefault;
-              props.setKeyboardWord(props.keyboardWord.slice(0, -1));
-            }}
-          >
-            &lArr;
-          </button>
+          <MobileKeyboardButton
+            letter={"<-"}
+            word={props.keyboardWord}
+            setWord={props.setKeyboardWord}
+            backspace={true}
+          />
           <MobileKeyboardButton
             letter={" "}
             word={props.keyboardWord}
             setWord={props.setKeyboardWord}
+            backspace={false}
           />
 
           <button
             type="button"
-            className="keyboard-button keyboard-button-medium"
+            className="keyboard-button"
+            style={{ backgroundColor: "green" }}
             onClick={(e) => {
               e.preventDefault;
               props.updateKeyboardField(

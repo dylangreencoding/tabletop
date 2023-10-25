@@ -13,13 +13,13 @@ interface Props {
 export default function PanelInner(props: Props) {
   const displayPanel = () => {
     switch (props.activePanel) {
-      case "Home":
+      case "home":
         return <Home />;
-      case "Creator Mode":
+      case "build":
         return (
           <CreatorMode mapData={props.mapData} setMapData={props.setMapData} />
         );
-      case "Player Mode":
+      case "play":
         return <PlayerMode />;
     }
   };
