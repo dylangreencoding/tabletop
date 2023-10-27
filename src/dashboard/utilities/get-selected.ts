@@ -1,13 +1,17 @@
+export function getXYArray (xyString: string) {
+  return xyString.split(" ").map((value) => +value)
+}
+
 export function getXYStr (x: number, y: number) {
   return x.toString().concat(" ", y.toString());
 }
 
-export function getSelected (selectedX: number, selectedY: number, mapData: any) {
+export function getSelected (mapData: any) {
   let selected;
 
   // // if a square is selected
-  if ((selectedX >= 0 && selectedX <= mapData.width) && (selectedY >= 0 && selectedY <= mapData.height)) {
-    selected = mapData.entities[getXYStr(selectedX, selectedY)];
+  if ((mapData.selected.x >= 0 && mapData.selected.x <= mapData.width) && (mapData.selected.y >= 0 && mapData.selected.y <= mapData.height)) {
+    selected = mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)];
 
     // // if selected square contains an entity
     if (selected) {
@@ -15,19 +19,15 @@ export function getSelected (selectedX: number, selectedY: number, mapData: any)
     } else {
       // // if selected square is empty
       return {
-        x: selectedX,
-        y: selectedY,
-        type: "~",
-        name: "~"
+        type: "empty square",
+        detail: ""
       }
     }
   } else {
     // // if no square is selected
     return {
-      x: 'x',
-      y: 'y',
       type: "",
-      name: ""
+      detail: ""
     }
   }
 }

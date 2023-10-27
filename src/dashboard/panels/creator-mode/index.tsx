@@ -9,11 +9,7 @@ interface Props {
 }
 
 export default function CreatorMode(props: Props) {
-  const selected = getSelected(
-    props.mapData.selected.x,
-    props.mapData.selected.y,
-    props.mapData
-  );
+  const selected = getSelected(props.mapData);
 
   const displayForm = () => {
     switch (props.mapData.tool) {

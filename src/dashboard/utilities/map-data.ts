@@ -12,9 +12,7 @@ export const rawMapData : any = {
   width: 1000,
   height: 1000,
   entities: {template: {
-    type: "wall", // // "wall" or "zombie"
-    name: "wall", // // give it a name, default name is set to equal type when type is set ("wall" or "zombie")
-}},
+    type: "wall", detail: ""}, "5 5": {type: "zombie", detail: ""}, "6 5": {type: "detail", detail: "detail goes here"}},
 
   // // fields generated on front end
   // // TO DO: strip and add these before saving

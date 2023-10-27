@@ -1,4 +1,4 @@
-import { getXYStr, getSelected } from "./get-selected";
+import { getXYStr } from "./get-selected";
 
 // // for use in canvas event handlers ONLY
 // // these functions are impure as sewer water
@@ -19,7 +19,8 @@ export function selectLocation (mapData: any, mouse: any, matrix: Array<Array<nu
       entity.x = mapData.selected.x;
       entity.y = mapData.selected.y;
       mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)] = entity;
-      matrix[mapData.selected.x][mapData.selected.y] = 1;
+      matrix[mapData.selected.x][mapData.selected.y] = entity;
+
       console.log('created here:', matrix[mapData.selected.x][mapData.selected.y], mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)])
       break;
     case "delete":
@@ -31,29 +32,12 @@ export function selectLocation (mapData: any, mouse: any, matrix: Array<Array<nu
   }
 }
 
-export function moveWithArrow (mapData: any, matrix: Array<Array<number>>, x: number, y: number, shiftKey: boolean) {
-  const selected = getSelected(mapData.selected.x, mapData.selected.y, mapData);
-  const nextSquare = getSelected(mapData.selected.x + x, mapData.selected.y + y, mapData);
+export function moveWithArrow (mapData: any, x: number, y: number,) {
+  // const selected = getSelected(mapData);
+  // const nextSquare = getSelected(mapData);
 
-
-  if (selected.type !== "" && selected.type !== "~" && nextSquare.type === "~" && shiftKey === false) {
-    
-    // // move piece
-    mapData.entities[getXYStr(selected.x + x, selected.y + y)] = JSON.parse(JSON.stringify(selected));
-    mapData.entities[getXYStr(selected.x + x, selected.y + y)].x += x;
-    mapData.entities[getXYStr(selected.x + x, selected.y + y)].y += y;
-    matrix[selected.x + x][selected.y + y] = 1;
-    delete matrix[selected.x][selected.y];
-    delete mapData.entities[getXYStr(mapData.selected.x, mapData.selected.y)];
-    mapData.selected.x = selected.x + x;
-    mapData.selected.y = selected.y + y;
-  } else if (nextSquare.type === "~" && shiftKey === false) {
-    mapData.selected.x = selected.x + x;
-    mapData.selected.y = selected.y + y;
-  } else if (nextSquare.type !== "" && shiftKey === true) {
-    mapData.selected.x = selected.x + x;
-    mapData.selected.y = selected.y + y;
-  }
+    mapData.selected.x += x;
+    mapData.selected.y += y;
 }
 
 export function keepMapInView (mapData: any, canvas: any) {

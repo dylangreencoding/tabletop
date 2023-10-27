@@ -19,8 +19,6 @@ export default function EntityTypeButton(props: Props) {
         e.preventDefault();
         const mapData = props.mapData;
         props.mapData.entities[props.entityKey].type = props.type;
-        props.mapData.entities[props.entityKey].name = props.type;
-
         props.setMapData({ ...props.mapData, mapData });
       }}
     >

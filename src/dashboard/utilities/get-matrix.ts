@@ -1,4 +1,6 @@
-
+// // initialized in Canvas useMemo
+// // mutated in canvas-event-handlers.ts, selectLocation and moveWithArrow functions
+// // referenced in canvas/draw.ts
 export function getMatrix (mapData: any) {
 
   // // generate matrix
@@ -11,8 +13,13 @@ export function getMatrix (mapData: any) {
 
   // // add entities
   for (const key of Object.keys(mapData.entities)) {
+
     if (key === "template") continue;
-    mapMatrix[mapData.entities[key].x][mapData.entities[key].y] = 1;
+
+    const xy = key.split(" ").map((value) => +value);
+
+    mapMatrix[xy[0]][xy[1]] = mapData.entities[key];
+
   }
 
   // // fill every location

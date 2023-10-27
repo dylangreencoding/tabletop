@@ -1,4 +1,4 @@
-import { getSelected, getXYStr } from "../utilities/get-selected";
+import { getSelected } from "../utilities/get-selected";
 
 export function draw(ctx: any, canvasWidth: number, canvasHeight: number, mapData: any, mouseData: any, matrix: any, activePanel: string) {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -75,27 +75,32 @@ export function draw(ctx: any, canvasWidth: number, canvasHeight: number, mapDat
     for (let j = matrixColumnStart; j < matrixColumnEnd; j++) {
       // // returns false for empty slots aka elisions
       if (matrix[i].hasOwnProperty(j)) {
-        if (mapData.entities[getXYStr(i, j)].type === "wall") {
+        if (matrix[i][j].type === "wall") {
           ctx.fillStyle = '#737373';
           ctx.beginPath();
           ctx.fillRect(i * mapData.scale + mapData.x - mapData.scale*0.5,  j * mapData.scale + mapData.y - mapData.scale*0.5, mapData.scale, mapData.scale)
           ctx.closePath();
-        } else if (mapData.entities[getXYStr(i, j)].type === "zombie") {
-          ctx.fillStyle = 'darkgreen';
+        } else if (matrix[i][j].type === "zombie") {
+          ctx.fillStyle = 'red';
           ctx.beginPath();
-          ctx.arc(i * mapData.scale + mapData.x, j * mapData.scale + mapData.y, mapData.scale*0.3, 0, Math.PI*2);
+          ctx.fillRect(i * mapData.scale + mapData.x - mapData.scale*0.5,  j * mapData.scale + mapData.y - mapData.scale*0.5, mapData.scale, mapData.scale)
           ctx.closePath();
-          ctx.fill();
+        } else {
+          ctx.fillStyle = '#121212';
+          ctx.beginPath();
+          ctx.fillRect(i * mapData.scale + mapData.x - mapData.scale*0.5,  j * mapData.scale + mapData.y - mapData.scale*0.5, mapData.scale, mapData.scale)
+          ctx.closePath();
         }
       }
     }
   }
 
   // // draw text
-  const selected = getSelected(mapData.selected.x, mapData.selected.y, mapData)
+  const selected = getSelected(mapData)
   ctx.font = "18px monospace";
   ctx.fillStyle = '#e0e0e0a6';
-  ctx.fillText(`${selected.x}, ${selected.y} ${selected.name}`, 10, 18);
+  ctx.fillText(`${mapData.selected.x}, ${mapData.selected.y} ${selected.type}`, 10, 18);
+  ctx.fillText(`${selected.detail}`, 10, 36);
   ctx.fillText(`${mapData.name} - ${activePanel.toUpperCase()} - ${mapData.tool}`, 10, canvasHeight - 18);
 
 

@@ -172,26 +172,26 @@ export default function Canvas(props: Props) {
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (props.panelOut === false) {
-        switch (e.key) {
-          case "ArrowUp":
-            moveWithArrow(props.mapData, matrix, 0, -1, e.shiftKey);
-            props.setMapData({ ...props.mapData, mapData });
-            break;
-          case "ArrowRight":
-            moveWithArrow(props.mapData, matrix, 1, 0, e.shiftKey);
-            props.setMapData({ ...props.mapData, mapData });
-            break;
-          case "ArrowDown":
-            moveWithArrow(props.mapData, matrix, 0, 1, e.shiftKey);
-            props.setMapData({ ...props.mapData, mapData });
-            break;
-          case "ArrowLeft":
-            moveWithArrow(props.mapData, matrix, -1, 0, e.shiftKey);
-            props.setMapData({ ...props.mapData, mapData });
-            break;
-        }
+      // if (props.panelOut === false) {
+      switch (e.key) {
+        case "ArrowUp":
+          moveWithArrow(props.mapData, 0, -1);
+          props.setMapData({ ...props.mapData, mapData });
+          break;
+        case "ArrowRight":
+          moveWithArrow(props.mapData, 1, 0);
+          props.setMapData({ ...props.mapData, mapData });
+          break;
+        case "ArrowDown":
+          moveWithArrow(props.mapData, 0, 1);
+          props.setMapData({ ...props.mapData, mapData });
+          break;
+        case "ArrowLeft":
+          moveWithArrow(props.mapData, -1, 0);
+          props.setMapData({ ...props.mapData, mapData });
+          break;
       }
+      // }
     };
 
     const handleWheel = (e: WheelEvent) => {
