@@ -50,23 +50,11 @@ export default function App() {
                     github.com/dylangreencoding
                   </a>
                 </p>
-              </div>
-              <div
-                style={{
-                  backgroundColor: "hsl(0, 0%, 80%)",
-                  color: "#121212",
-                  padding: "2.4rem",
-                  border: "teal 1px solid",
-                  borderRadius: "3px",
-                  display: "flex",
-                  marginBottom: "12rem",
-                }}
-              >
+
                 <div>
-                  <h2>Hello </h2>
+                  <p>Site under development.</p>
                   <p>Thanks for coming.</p>
                   <p>
-                    <span>TL;DR: </span>
                     Check out the{" "}
                     <span
                       className="fake-link"
@@ -79,25 +67,7 @@ export default function App() {
                     </span>
                     .
                   </p>
-                  <p>
-                    This is here because I am refactoring an old project. I work
-                    on this when I have time. I am quite busy at the moment, but
-                    plan to slowly develop this into something fun, functional
-                    and beautiful.
-                  </p>
-                  <p>
-                    I was a little hesitant to take the old project down,
-                    because it was a full stack app with user login and secure
-                    chatrooms, but it is dated and I am not as proud of it as I
-                    used to be.
-                  </p>
-                  <p>Here is a silent video in honor of its memory.</p>
-                  <p>@ 4 seconds in - auto redirect from http to https</p>
-                  <p>
-                    @ 1 minute in - map converted to game, keep watching to see
-                    chatroom functionality
-                  </p>
-                  <p>@ 3 minutes in - account verification</p>
+                  <p>The old site (no sound):</p>
                   <p style={{ margin: "3.2rem 0" }}>
                     <video src={video} width="300" controls></video>
                   </p>
