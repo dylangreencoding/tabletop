@@ -96,7 +96,7 @@ export function draw(ctx: any, canvasWidth: number, canvasHeight: number, mapDat
   ctx.font = "18px monospace";
   ctx.fillStyle = '#e0e0e0a6';
   ctx.fillText(`${selected.x}, ${selected.y} ${selected.type}`, 10, 18);
-  ctx.fillText(`${mapData.name} - ${mapData.tool}`, 10, canvasHeight - 18);
+  ctx.fillText(`${mapData.name}`, 10, canvasHeight - 18);
 
 
 

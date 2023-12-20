@@ -2,7 +2,7 @@ import { useState } from "react";
 
 interface Props {
   word: string;
-  setWord: Function;
+  setWord: any;
   letter: string;
   backspace: boolean;
 }

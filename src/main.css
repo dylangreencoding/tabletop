@@ -18,10 +18,75 @@ ul {
   list-style: none;
 }
 
-textarea {
-  resize: none;
+p, h2, h3 {
+  margin-bottom: 2.4rem;
 }
 
+button {
+  padding: 0.6rem 1rem 0.6rem 1rem;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.fake-link {
+  color: navy;
+}
+
+.fake-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.a-bold:link, .a-bold:visited {
+  color: inherit;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+.a-bold:hover, .a-bold:active {
+  color: #121212;
+  background-color: #ffd700;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 1.8rem;
+}
+
+/* track */
+::-webkit-scrollbar-track {
+  background: #121212;
+}
+
+/* handle */
+::-webkit-scrollbar-thumb {
+  background: hsl(0, 0%, 15%);
+  border-radius: 1.8rem;
+}
+
+/* handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(0, 0%, 5%);
+  cursor: pointer;
+}
+
+/* ----------------------------------------------------------------- */
+/* ----------------------------------------------------------------- */
+/* ----------------------------------------------------------------- */
+/* HomePage */
+
+.homepage {
+  color: hsl(0, 0%, 80%);
+  background-color: #121212;
+  min-height: 100svh;
+  font-weight: 800;
+
+}
 
 
 /* ----------------------------------------------------------------- */

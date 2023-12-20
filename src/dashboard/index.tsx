@@ -35,99 +35,67 @@ export function Dashboard(props: DashboardProps) {
         style={{
           position: "fixed",
           zIndex: "999",
-          top: "5%",
-          right: "0",
-          display: "flex",
-          gap: "10px",
-        }}
-      >
-        <button
-          type="button"
-          style={
-            mapData.tool === "create"
-              ? { backgroundColor: "red" }
-              : { backgroundColor: "white" }
-          }
-          onClick={(e: any) => {
-            e.preventDefault();
-            mapData.tool = "create";
-            setMapData({ ...mapData, mapData });
-          }}
-        >
-          create
-        </button>
-        <button
-          type="button"
-          style={
-            mapData.tool === "select"
-              ? { backgroundColor: "red" }
-              : { backgroundColor: "white" }
-          }
-          onClick={(e: any) => {
-            e.preventDefault();
-            mapData.tool = "select";
-            setMapData({ ...mapData, mapData });
-          }}
-        >
-          select
-        </button>
-        <button
-          type="button"
-          style={
-            mapData.tool === "delete"
-              ? { backgroundColor: "red" }
-              : { backgroundColor: "white" }
-          }
-          onClick={(e: any) => {
-            e.preventDefault();
-            mapData.tool = "delete";
-            setMapData({ ...mapData, mapData });
-          }}
-        >
-          delete
-        </button>
-      </nav>
-      <nav
-        style={{
-          position: "fixed",
-          zIndex: "999",
           top: "10%",
           right: "0",
           display: "flex",
+          flexDirection: "column",
           gap: "10px",
+          alignItems: "flex-end",
         }}
       >
-        <button
-          type="button"
-          style={
-            mapData.entities.template.type === "wall"
-              ? { backgroundColor: "red" }
-              : { backgroundColor: "white" }
-          }
-          onClick={(e: any) => {
-            e.preventDefault();
-            mapData.entities.template.type = "wall";
-            setMapData({ ...mapData, mapData });
+        <ul
+          style={{
+            display: "flex",
+            gap: "10px",
           }}
         >
-          wall
-        </button>
-        <button
-          type="button"
-          style={
-            mapData.entities.template.type === "zombie"
-              ? { backgroundColor: "red" }
-              : { backgroundColor: "white" }
-          }
-          onClick={(e: any) => {
-            e.preventDefault();
-            mapData.entities.template.type = "zombie";
-
-            setMapData({ ...mapData, mapData });
-          }}
-        >
-          zombie
-        </button>
+          {["create", "select", "delete"].map((tool: string) => {
+            return (
+              <li key={tool}>
+                <button
+                  type="button"
+                  style={
+                    mapData.tool === tool
+                      ? { backgroundColor: "red" }
+                      : { backgroundColor: "white" }
+                  }
+                  onClick={(e: any) => {
+                    e.preventDefault();
+                    mapData.tool = tool;
+                    setMapData({ ...mapData, mapData });
+                  }}
+                >
+                  {tool}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+        {mapData.tool === "create" ? (
+          <ul style={{ display: "flex", gap: "10px" }}>
+            {["wall", "zombie"].map((type: string) => {
+              return (
+                <li key={type}>
+                  <button
+                    type="button"
+                    style={
+                      mapData.entities.template.type === type
+                        ? { backgroundColor: "red" }
+                        : { backgroundColor: "white" }
+                    }
+                    onClick={(e: any) => {
+                      e.preventDefault();
+                      mapData.entities.template.type = type;
+                      setMapData({ ...mapData, mapData });
+                    }}
+                  >
+                    {type}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        ) : null}
       </nav>
       <Canvas
         selectedMap={props.selectedMap}

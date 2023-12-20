@@ -22,7 +22,7 @@ import {
 interface Props {
   selectedMap: any;
   mapData: any;
-  setMapData: Function;
+  setMapData: any;
 }
 
 export default function Canvas(props: Props) {
@@ -48,8 +48,8 @@ export default function Canvas(props: Props) {
     const ctx = canvas.getContext("2d");
 
     // // generate grid hashmaps
-    let hashX = getHashX(props.mapData, canvas.width);
-    let hashY = getHashY(props.mapData, canvas.height);
+    const hashX = getHashX(props.mapData, canvas.width);
+    const hashY = getHashY(props.mapData, canvas.height);
     console.log(props.mapData);
 
     // // initital draw

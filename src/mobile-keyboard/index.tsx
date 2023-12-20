@@ -3,11 +3,11 @@ import { keyRow1, keyRow2, keyRow3 } from "./alphabet";
 import MobileKeyboardButton from "./mobile-keyboard-button";
 
 interface Props {
-  setKeyboardOpen: Function;
+  setKeyboardOpen: any;
   keyboardField: string;
-  updateKeyboardField: Function;
+  updateKeyboardField: any;
   keyboardWord: string;
-  setKeyboardWord: Function;
+  setKeyboardWord: any;
 }
 
 export default function MobileKeyboard(props: Props) {
