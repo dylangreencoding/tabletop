@@ -1,6 +1,6 @@
 import { getSelected, getXYStr } from "../utilities/get-selected";
 
-export function draw(ctx: any, canvasWidth: number, canvasHeight: number, mapData: any, mouseData: any, matrix: any, activePanel: string) {
+export function draw(ctx: any, canvasWidth: number, canvasHeight: number, mapData: any, mouseData: any, matrix: any) {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
   ctx.strokeStyle = "#252525";
   ctx.lineWidth = 1;
@@ -95,8 +95,8 @@ export function draw(ctx: any, canvasWidth: number, canvasHeight: number, mapDat
   const selected = getSelected(mapData.selected.x, mapData.selected.y, mapData)
   ctx.font = "18px monospace";
   ctx.fillStyle = '#e0e0e0a6';
-  ctx.fillText(`${selected.x}, ${selected.y} ${selected.name}`, 10, 18);
-  ctx.fillText(`${mapData.name} - ${activePanel.toUpperCase()} - ${mapData.tool}`, 10, canvasHeight - 18);
+  ctx.fillText(`${selected.x}, ${selected.y} ${selected.type}`, 10, 18);
+  ctx.fillText(`${mapData.name} - ${mapData.tool}`, 10, canvasHeight - 18);
 
 
 

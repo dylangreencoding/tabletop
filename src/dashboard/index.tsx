@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import Canvas from "./canvas";
-import PanelOuter from "./panel-outer";
 
 import { rawMapData } from "./utilities/map-data";
 
@@ -28,41 +27,112 @@ interface DashboardProps {
 export function Dashboard(props: DashboardProps) {
   // // deep copy users selected map
   // // this way map can be manipulated without affecting original
-  // // initialize mapData generates property fields not needed to be sent to database
   const [mapData, setMapData] = useState<any>(JSON.parse(props.selectedMap));
 
-  // // used to expand/collapse panel
-  // // initialized here as canvas depends on it for resizing
-  const [panelOut, setPanelOut] = useState<boolean>(true);
-
-  // // used to determine which panel is currently displayed
-  // // "home", "build", or "play"
-  // // initialized here as canvas functionality varies depending on build / play modes
-  const [activePanel, setActivePanel] = useState<string>("home");
-
-  // // returns a css grid element with two columns/rows depending on orientation
-  // // contains Canvas and PanelOuter (PanelOuter contains PanelInner and Tabs )
   return (
-    <div
-      className={`dashboard ${
-        panelOut ? "dashboard-panel-out" : "dashboard-panel-in"
-      }`}
-    >
+    <div className="dashboard">
+      <nav
+        style={{
+          position: "fixed",
+          zIndex: "999",
+          top: "5%",
+          right: "0",
+          display: "flex",
+          gap: "10px",
+        }}
+      >
+        <button
+          type="button"
+          style={
+            mapData.tool === "create"
+              ? { backgroundColor: "red" }
+              : { backgroundColor: "white" }
+          }
+          onClick={(e: any) => {
+            e.preventDefault();
+            mapData.tool = "create";
+            setMapData({ ...mapData, mapData });
+          }}
+        >
+          create
+        </button>
+        <button
+          type="button"
+          style={
+            mapData.tool === "select"
+              ? { backgroundColor: "red" }
+              : { backgroundColor: "white" }
+          }
+          onClick={(e: any) => {
+            e.preventDefault();
+            mapData.tool = "select";
+            setMapData({ ...mapData, mapData });
+          }}
+        >
+          select
+        </button>
+        <button
+          type="button"
+          style={
+            mapData.tool === "delete"
+              ? { backgroundColor: "red" }
+              : { backgroundColor: "white" }
+          }
+          onClick={(e: any) => {
+            e.preventDefault();
+            mapData.tool = "delete";
+            setMapData({ ...mapData, mapData });
+          }}
+        >
+          delete
+        </button>
+      </nav>
+      <nav
+        style={{
+          position: "fixed",
+          zIndex: "999",
+          top: "10%",
+          right: "0",
+          display: "flex",
+          gap: "10px",
+        }}
+      >
+        <button
+          type="button"
+          style={
+            mapData.entities.template.type === "wall"
+              ? { backgroundColor: "red" }
+              : { backgroundColor: "white" }
+          }
+          onClick={(e: any) => {
+            e.preventDefault();
+            mapData.entities.template.type = "wall";
+            setMapData({ ...mapData, mapData });
+          }}
+        >
+          wall
+        </button>
+        <button
+          type="button"
+          style={
+            mapData.entities.template.type === "zombie"
+              ? { backgroundColor: "red" }
+              : { backgroundColor: "white" }
+          }
+          onClick={(e: any) => {
+            e.preventDefault();
+            mapData.entities.template.type = "zombie";
+
+            setMapData({ ...mapData, mapData });
+          }}
+        >
+          zombie
+        </button>
+      </nav>
       <Canvas
         selectedMap={props.selectedMap}
         mapData={mapData}
         setMapData={setMapData}
-        panelOut={panelOut}
-        setPanelOut={setPanelOut}
-        activePanel={activePanel}
-      />
-      <PanelOuter
-        mapData={mapData}
-        setMapData={setMapData}
-        panelOut={panelOut}
-        setPanelOut={setPanelOut}
-        activePanel={activePanel}
-        setActivePanel={setActivePanel}
       />
     </div>
   );

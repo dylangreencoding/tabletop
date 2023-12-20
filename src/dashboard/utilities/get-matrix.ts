@@ -1,3 +1,4 @@
+// import { getXYStr } from "./get-selected";
 
 export function getMatrix (mapData: any) {
 
@@ -15,11 +16,16 @@ export function getMatrix (mapData: any) {
     mapMatrix[mapData.entities[key].x][mapData.entities[key].y] = 1;
   }
 
-  // // fill every location
-  // // for testing purposes
+  // fill every location
+  // for testing purposes
   // for (let i = 0; i < mapMatrix.length; i++) {
   //   for (let j = 0; j < mapMatrix[i].length; j++) {
   //     mapMatrix[i][j] = 1;
+  //     mapData.entities[getXYStr(i, j)] = {
+  //       x: i,
+  //       y: j,
+  //       type: "zombie",
+  //     }
   //   }
   // }
 

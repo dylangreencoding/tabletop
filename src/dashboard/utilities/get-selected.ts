@@ -18,7 +18,6 @@ export function getSelected (selectedX: number, selectedY: number, mapData: any)
         x: selectedX,
         y: selectedY,
         type: "~",
-        name: "~"
       }
     }
   } else {
@@ -27,7 +26,6 @@ export function getSelected (selectedX: number, selectedY: number, mapData: any)
       x: 'x',
       y: 'y',
       type: "",
-      name: ""
     }
   }
 }

@@ -9,11 +9,10 @@ export const rawMapData : any = {
   player2: "",
   player3: "",
   player4: "",
-  width: 1000,
-  height: 1000,
+  width: 500,
+  height: 500,
   entities: {template: {
     type: "wall", // // "wall" or "zombie"
-    name: "wall", // // give it a name, default name is set to equal type when type is set ("wall" or "zombie")
 }},
 
   // // fields generated on front end

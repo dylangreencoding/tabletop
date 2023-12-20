@@ -23,11 +23,6 @@ interface Props {
   selectedMap: any;
   mapData: any;
   setMapData: Function;
-
-  setPanelOut: Function;
-  panelOut: boolean;
-
-  activePanel: string;
 }
 
 export default function Canvas(props: Props) {
@@ -40,30 +35,6 @@ export default function Canvas(props: Props) {
     () => getMatrix(props.mapData),
     [props.selectedMap]
   );
-
-  const getCanvasWidth = () => {
-    if (window.innerWidth >= window.innerHeight) {
-      if (props.panelOut) {
-        return window.innerWidth * 0.5;
-      } else {
-        return window.innerWidth - 80;
-      }
-    } else if (window.innerWidth < window.innerHeight) {
-      return window.innerWidth;
-    }
-  };
-
-  const getCanvasHeight = () => {
-    if (window.innerWidth < window.innerHeight) {
-      if (props.panelOut) {
-        return window.innerHeight * 0.25;
-      } else {
-        return window.innerHeight - 80;
-      }
-    } else if (window.innerWidth >= window.innerHeight) {
-      return window.innerHeight;
-    }
-  };
 
   // // useEffect necessary for drawing on canvas
   useEffect(() => {
@@ -82,15 +53,7 @@ export default function Canvas(props: Props) {
     console.log(props.mapData);
 
     // // initital draw
-    draw(
-      ctx,
-      canvas.width,
-      canvas.height,
-      props.mapData,
-      mouse,
-      matrix,
-      props.activePanel
-    );
+    draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
 
     /// // ************* \\ \\\
     // // EVENT HANDLERS \\ \\
@@ -111,15 +74,7 @@ export default function Canvas(props: Props) {
         keepMapInView(props.mapData, canvas);
       }
 
-      draw(
-        ctx,
-        canvas.width,
-        canvas.height,
-        props.mapData,
-        mouse,
-        matrix,
-        props.activePanel
-      );
+      draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
     };
 
     const handleMouseUp = (_e: MouseEvent) => {
@@ -143,54 +98,42 @@ export default function Canvas(props: Props) {
     const handleMouseLeave = (_e: MouseEvent) => {
       mouse.position.x = NaN;
       mouse.position.y = NaN;
-      draw(
-        ctx,
-        canvas.width,
-        canvas.height,
-        props.mapData,
-        mouse,
-        matrix,
-        props.activePanel
-      );
+      draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
-      if (props.panelOut === false) {
-        switch (e.key) {
-          case "`":
-            // // temporary, for development
-            props.setMapData({ ...props.mapData, mapData });
-            console.log(props.mapData);
-            sessionStorage.setItem("tabletopUI", JSON.stringify(props.mapData));
-            break;
-          case "~":
-            // // temporary, for development
-            sessionStorage.removeItem("tabletopUI");
-            location.reload();
-        }
+      switch (e.key) {
+        case "`":
+          // // temporary, for development
+          props.setMapData({ ...props.mapData, mapData });
+          console.log(props.mapData);
+          sessionStorage.setItem("tabletopUI", JSON.stringify(props.mapData));
+          break;
+        case "~":
+          // // temporary, for development
+          sessionStorage.removeItem("tabletopUI");
+          location.reload();
       }
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (props.panelOut === false) {
-        switch (e.key) {
-          case "ArrowUp":
-            moveWithArrow(props.mapData, matrix, 0, -1, e.shiftKey);
-            props.setMapData({ ...props.mapData, mapData });
-            break;
-          case "ArrowRight":
-            moveWithArrow(props.mapData, matrix, 1, 0, e.shiftKey);
-            props.setMapData({ ...props.mapData, mapData });
-            break;
-          case "ArrowDown":
-            moveWithArrow(props.mapData, matrix, 0, 1, e.shiftKey);
-            props.setMapData({ ...props.mapData, mapData });
-            break;
-          case "ArrowLeft":
-            moveWithArrow(props.mapData, matrix, -1, 0, e.shiftKey);
-            props.setMapData({ ...props.mapData, mapData });
-            break;
-        }
+      switch (e.key) {
+        case "ArrowUp":
+          moveWithArrow(props.mapData, matrix, 0, -1, e.shiftKey);
+          props.setMapData({ ...props.mapData, mapData });
+          break;
+        case "ArrowRight":
+          moveWithArrow(props.mapData, matrix, 1, 0, e.shiftKey);
+          props.setMapData({ ...props.mapData, mapData });
+          break;
+        case "ArrowDown":
+          moveWithArrow(props.mapData, matrix, 0, 1, e.shiftKey);
+          props.setMapData({ ...props.mapData, mapData });
+          break;
+        case "ArrowLeft":
+          moveWithArrow(props.mapData, matrix, -1, 0, e.shiftKey);
+          props.setMapData({ ...props.mapData, mapData });
+          break;
       }
     };
 
@@ -210,21 +153,10 @@ export default function Canvas(props: Props) {
     };
 
     const handleResize = (_e: Event) => {
-      // // doing this here ensures PanelInner max-height inline css property is set correctly
-      // // basically just forcing a re-render
-      props.setPanelOut(false);
       // // assure typescript canvas width is not undefined
-      canvas.width = getCanvasWidth() || window.innerWidth;
-      canvas.height = getCanvasHeight() || window.innerHeight;
-      draw(
-        ctx,
-        canvas.width,
-        canvas.height,
-        props.mapData,
-        mouse,
-        matrix,
-        props.activePanel
-      );
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
     };
 
     const handleTouchStart = (e: TouchEvent) => {
@@ -249,15 +181,7 @@ export default function Canvas(props: Props) {
       props.mapData.y += touch.thisTouch.y - touch.lastTouch.y;
       touch.didMoveMap = true;
       keepMapInView(props.mapData, canvas);
-      draw(
-        ctx,
-        canvas.width,
-        canvas.height,
-        props.mapData,
-        mouse,
-        matrix,
-        props.activePanel
-      );
+      draw(ctx, canvas.width, canvas.height, props.mapData, mouse, matrix);
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
@@ -310,14 +234,14 @@ export default function Canvas(props: Props) {
       canvas.removeEventListener("touchend", handleTouchEnd);
       canvas.removeEventListener("touchcancel", handleTouchCancel);
     };
-  }, [props.mapData, props.panelOut, props.activePanel]);
+  }, [props.mapData]);
 
   return (
     <canvas
       className="canvas"
       ref={canvasRef}
-      width={getCanvasWidth()}
-      height={getCanvasHeight()}
+      width={window.innerWidth}
+      height={window.innerHeight}
     />
   );
 }
