@@ -33,7 +33,7 @@ export default function App() {
             <div
               style={{
                 margin: "0 auto",
-                maxWidth: "70rem",
+                maxWidth: "70svw",
                 display: "flex",
                 gap: "2.4rem",
                 flexDirection: "column",
@@ -99,7 +99,7 @@ export default function App() {
                   </p>
                   <p>@ 3 minutes in - account verification</p>
                   <p style={{ margin: "3.2rem 0" }}>
-                    <video src={video} width="400" controls></video>
+                    <video src={video} width="300" controls></video>
                   </p>
                 </div>
               </div>
