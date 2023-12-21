@@ -41,6 +41,7 @@ export function Dashboard(props: DashboardProps) {
           flexDirection: "column",
           gap: "10px",
           alignItems: "flex-end",
+          pointerEvents: "none",
         }}
       >
         <ul
@@ -56,8 +57,8 @@ export function Dashboard(props: DashboardProps) {
                   type="button"
                   style={
                     mapData.tool === tool
-                      ? { backgroundColor: "red" }
-                      : { backgroundColor: "white" }
+                      ? { backgroundColor: "#ccc", color: "#121212" }
+                      : {}
                   }
                   onClick={(e: any) => {
                     e.preventDefault();
@@ -80,8 +81,8 @@ export function Dashboard(props: DashboardProps) {
                     type="button"
                     style={
                       mapData.entities.template.type === type
-                        ? { backgroundColor: "red" }
-                        : { backgroundColor: "white" }
+                        ? { backgroundColor: "#ccc", color: "#121212" }
+                        : {}
                     }
                     onClick={(e: any) => {
                       e.preventDefault();
