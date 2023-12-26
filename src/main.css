@@ -97,6 +97,15 @@ button:hover {
 
 }
 
+.homepage-inner {
+  margin: 0 auto;
+  max-width: 50svw;
+  display: flex;
+  gap: 2.4rem;
+  flex-direction: column;
+}
+
+
 
 /* ----------------------------------------------------------------- */
 /* ----------------------------------------------------------------- */
@@ -204,4 +213,20 @@ button:hover {
 }
 
 
+@media (max-width: 1100px) {
+  .homepage-inner {
+    max-width: 70svw;
+  }
+}
 
+@media (max-width: 800px) {
+  .homepage-inner {
+    max-width: 80svw;
+  }
+}
+
+@media (max-width: 500px) {
+  .homepage-inner {
+    max-width: 90svw;
+  }
+}

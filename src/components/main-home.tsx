@@ -6,17 +6,10 @@ export default function MainHome() {
   const dispatch = useContext(PageDispatchContext);
   return (
     <div className="homepage">
-      <div
-        style={{
-          margin: "0 auto",
-          maxWidth: "70svw",
-          display: "flex",
-          gap: "2.4rem",
-          flexDirection: "column",
-        }}
-      >
-        <div style={{ padding: "2.4rem 0 2.4rem", textAlign: "center" }}>
+      <div className="homepage-inner">
+        <main>
           <h1>Dylan Green</h1>
+          <p>TypeScript Developer</p>
           <p>
             <a
               className="a-bold"
@@ -28,7 +21,7 @@ export default function MainHome() {
           </p>
 
           <div>
-            <p>Site under development.</p>
+            <p>This site is under development.</p>
             <p>Thanks for coming.</p>
             <p>
               Check out the{" "}
@@ -43,22 +36,12 @@ export default function MainHome() {
               </span>
               .
             </p>
-            <p>The old site (no sound):</p>
+            <p>A silent video commemorating the old site:</p>
           </div>
-        </div>
-      </div>
-      <div
-        style={{
-          margin: "0 auto",
-          maxWidth: "300px",
-          display: "flex",
-          gap: "2.4rem",
-          flexDirection: "column",
-        }}
-      >
-        <p>
-          <video src={video} width="300" controls></video>
-        </p>
+          <p>
+            <video src={video} width="300" controls></video>
+          </p>
+        </main>
       </div>
     </div>
   );
