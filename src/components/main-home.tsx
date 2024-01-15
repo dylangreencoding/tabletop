@@ -21,10 +21,9 @@ export default function MainHome() {
           </p>
 
           <div>
-            <p>This site is under development.</p>
             <p>Thanks for coming.</p>
             <p>
-              Check out the{" "}
+              Check out the new{" "}
               <span
                 className="fake-link"
                 onClick={(e) => {
@@ -32,11 +31,16 @@ export default function MainHome() {
                   dispatch({ type: "goto/dashboard" });
                 }}
               >
-                new dashboard
+                grid
               </span>
               .
             </p>
-            <p>A silent video commemorating the old site:</p>
+            <p>
+              The old site had login and secure chatroom functionality, but it
+              was a learning experience and I made a lot of naive mistakes, so I
+              scrapped it. Here is a way too long silent video demonstrating its
+              functionality:
+            </p>
           </div>
           <p>
             <video src={video} width="300" controls></video>
